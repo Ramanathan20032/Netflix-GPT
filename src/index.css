@@ -1,7 +1,20 @@
 @import "tailwindcss";
 
+:root{
+  --inter: "Inter", sans-serif;
+  --gabarito: "Gabarito", sans-serif;
+  --epilogue: "Epilogue", sans-serif;
+  --oswald: "Oswald", sans-serif;
+  --nunito: "Nunito", sans-serif;
+  --poppins: "Poppins", sans-serif;
+  --montserrat: "Montserrat", sans-serif;
+  --montserrat-alternates: "Montserrat Alternates", sans-serif;
+  --fredoka: "Fredoka", sans-serif;
+}
+
 *{
   box-sizing: border-box; 
+  font-family: var(--nunito);
 }
 
 body{
