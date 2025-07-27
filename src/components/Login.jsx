@@ -25,6 +25,7 @@ const Login = () => {
 
   const toggleSignInForm = () => {
     setIsSignin(!isSignin)
+    setPasswordToggle(false)
 
     // Clear the form fields on switch the signIn/signUp
     if (emailRef.current) emailRef.current.value = ''
@@ -52,6 +53,8 @@ const Login = () => {
           email: emailRef.current.value,
           password: passwordRef.current.value
         })
+        emailRef.current.value = ''
+        passwordRef.current.value = ''
       }
       // sign up
       if (!isSignin) {
@@ -60,6 +63,9 @@ const Login = () => {
           email: emailRef.current.value,
           password: passwordRef.current.value
         })
+        fullNameRef.current.value = ''
+        emailRef.current.value = ''
+        passwordRef.current.value = ''
       }
     }
   }
