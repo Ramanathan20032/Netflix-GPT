@@ -9,7 +9,7 @@ import password_open from '../assets/images/password_shown_new.png';
 import password_closed from '../assets/images/password_hidden_new.png';
 
 // ! Utils
-import { checkValidEmail, checkValidPassword } from '../utils/validate';
+import { checkValidEmail, checkValidPassword, checkValidFullName } from '../utils/validate';
 
 
 const Login = () => {
@@ -21,6 +21,7 @@ const Login = () => {
   const passwordRef = useRef(null);
   const [emailError, setEmailError] = useState(null)
   const [passwordError, setPasswordError] = useState(null)
+  const [fullNameError, setFullNameError] = useState(null);
   // const navigate = useNavigate();
 
   const toggleSignInForm = () => {
@@ -34,6 +35,7 @@ const Login = () => {
     // Clear the errors on switch the signIn/signUp
     setEmailError(null)
     setPasswordError(null)
+    setFullNameError(null);
   }
 
   const handleButtonClick = () => {
@@ -43,10 +45,15 @@ const Login = () => {
     setEmailError(emailValidateError)
     setPasswordError(passwordValidateError)
 
+    // For sign-up, validate full name
+    if (!isSignin) {
+      const fullNameValidateError = checkValidFullName(fullNameRef.current.value);
+      setFullNameError(fullNameValidateError);
+    }
+
     // If there is no error, then sign in or sign up
-    // ! TODO: Add sign in and sign up logic to the backend
+    // TODO: Add sign in and sign up logic to the backend
     if (!emailValidateError && !passwordValidateError) {
-      // console.log('form is valid')
       // sign in
       if (isSignin) {
         console.log('Sign-in Details', {
@@ -58,14 +65,16 @@ const Login = () => {
       }
       // sign up
       if (!isSignin) {
-        console.log('Sign-up Details', {
-          fullName: fullNameRef.current.value,
-          email: emailRef.current.value,
-          password: passwordRef.current.value
-        })
-        fullNameRef.current.value = ''
-        emailRef.current.value = ''
-        passwordRef.current.value = ''
+        if (!fullNameValidateError) {
+          console.log('Sign-up Details', {
+            fullName: fullNameRef.current.value,
+            email: emailRef.current.value,
+            password: passwordRef.current.value
+          })
+          fullNameRef.current.value = ''
+          emailRef.current.value = ''
+          passwordRef.current.value = ''
+        }
       }
     }
   }
@@ -75,6 +84,8 @@ const Login = () => {
       setEmailError(null)
     if (field === 'password')
       setPasswordError(null)
+    if (field === 'fullName')
+      setFullNameError(null);
   }
 
   return (
@@ -103,8 +114,9 @@ const Login = () => {
                 type="text"
                 placeholder="Full Name"
                 className="px-3 py-3 mt-3 mb-0 w-[100%] border-none focus:outline-none focus:bg-[#393E46]/100 bg-[#393E46]/80 text-white rounded-lg text-lg tracking-wider font-medium"
+                onChange={() => handleInputChange('fullName')}
               />
-              <p className='text-red-400 text-sm px-1 min-h-5'>{}</p>
+              <p className='text-red-400 text-sm px-1 min-h-5'>{fullNameError}</p>
             </div>
           }
 

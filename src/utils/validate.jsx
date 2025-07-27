@@ -1,3 +1,9 @@
+
+export const checkValidFullName = (fullName) => {
+    if (!fullName) return "Full name is required"
+    return null;
+}
+
 export const checkValidEmail = (email) => {
     if (!email) return "Email is required"
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
