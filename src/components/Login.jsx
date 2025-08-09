@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import Header from './Header';
 
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from '../utils/firebase';
 // import { useNavigate } from 'react-router-dom';
 
 // ! Images
@@ -22,6 +24,7 @@ const Login = () => {
   const [emailError, setEmailError] = useState(null)
   const [passwordError, setPasswordError] = useState(null)
   const [fullNameError, setFullNameError] = useState(null);
+  const [loginError, setLoginError] = useState(null);
   // const navigate = useNavigate();
 
   const toggleSignInForm = () => {
@@ -35,57 +38,90 @@ const Login = () => {
     // Clear the errors on switch the signIn/signUp
     setEmailError(null)
     setPasswordError(null)
-    setFullNameError(null);
+    setFullNameError(null)
+    setLoginError(null)
   }
 
+  // ! Handle SignIn/SignUp Button Click
   const handleButtonClick = () => {
+    // Clear any previous login errors
+    setLoginError(null);
+
     // Validate the form data
     const emailValidateError = checkValidEmail(emailRef.current.value)
     const passwordValidateError = checkValidPassword(passwordRef.current.value)
+    const fullNameValidateError = !isSignin ? checkValidFullName(fullNameRef.current.value) : null;
+
+    // Set validation errors
     setEmailError(emailValidateError)
     setPasswordError(passwordValidateError)
+    setFullNameError(fullNameValidateError)
 
-    // For sign-up, validate full name
-    if (!isSignin) {
-      const fullNameValidateError = checkValidFullName(fullNameRef.current.value);
-      setFullNameError(fullNameValidateError);
+    // Check if all validations pass
+    const hasErrors = emailValidateError || passwordValidateError || (!isSignin && fullNameValidateError);
+
+    if (hasErrors) return; // Early return if there are validation errors
+
+    // Clear form fields
+    const clearFormFields = () => {
+      emailRef.current.value = ''
+      passwordRef.current.value = ''
+      if (!isSignin && fullNameRef.current) {
+        fullNameRef.current.value = ''
+      }
     }
 
-    // If there is no error, then sign in or sign up
-    // TODO: Add sign in and sign up logic to the backend
-    if (!emailValidateError && !passwordValidateError) {
-      // sign in
-      if (isSignin) {
-        console.log('Sign-in Details', {
-          email: emailRef.current.value,
-          password: passwordRef.current.value
+    // Handle authentication
+    if (isSignin) {
+      // * Sign in logic with Firebase Auth
+      signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
+        .then((userCredential) => {
+          // Reload user to get the latest profile data including displayName
+          return userCredential.user.reload().then(() => userCredential.user);
         })
-        emailRef.current.value = ''
-        passwordRef.current.value = ''
-      }
-      // sign up
-      if (!isSignin) {
-        if (!fullNameValidateError) {
-          console.log('Sign-up Details', {
-            fullName: fullNameRef.current.value,
-            email: emailRef.current.value,
-            password: passwordRef.current.value
-          })
-          fullNameRef.current.value = ''
-          emailRef.current.value = ''
-          passwordRef.current.value = ''
-        }
-      }
+        .then((user) => {
+          console.log('User signed in successfully:', user);
+          clearFormFields();
+        })
+        .catch((error) => {
+          console.log('User Sign-in Error', error.code, error.message);
+          setLoginError(`${error.code} - ${error.message}`);
+        });
+    } else {
+      // * Sign up logic with Firebase Auth
+      const fullName = fullNameRef.current.value;
+
+      createUserWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
+        .then((userCredential) => {
+          // Update the user's profile with their full name
+          return updateProfile(userCredential.user, {
+            displayName: fullName
+          }).then(() => {
+            // Return the user object for the next .then()
+            return userCredential.user;
+          });
+        })
+        .then((user) => {
+          console.log('User signed up successfully:', user);
+          clearFormFields();
+        })
+        .catch((error) => {
+          console.log('User Sign-up Error', error.code, error.message);
+          setLoginError(`${error.code} - ${error.message}`);
+        });
     }
   }
 
   const handleInputChange = (field) => {
+    // Clear login error when user starts typing
+    setLoginError(null)
+
     if (field === 'email')
       setEmailError(null)
     if (field === 'password')
       setPasswordError(null)
     if (field === 'fullName')
-      setFullNameError(null);
+      setFullNameError(null)
   }
 
   return (
@@ -143,6 +179,8 @@ const Login = () => {
           </div>
           <p className='text-red-400 text-sm px-1 min-h-5'>{passwordError}</p>
         </div>
+
+        {loginError && <p className='text-red-400 text-sm px-1 min-h-5'>{loginError}</p>}
 
         <button className="px-2 py-2.5 my-3 mt-5 w-[93%] text-white text-lg font-medium bg-red-600 hover:bg-red-700 transition-all duration-300 rounded-md cursor-pointer"
           onClick={handleButtonClick}>

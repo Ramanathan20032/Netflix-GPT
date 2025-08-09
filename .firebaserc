@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "netflix-gpt-ae609"
+  },
+  "targets": {
+    "netflix-gpt-ae609": {
+      "hosting": {
+        "safe-site-name": [
+          "moviegpt-app"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

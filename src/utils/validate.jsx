@@ -1,4 +1,3 @@
-
 export const checkValidFullName = (fullName) => {
     if (!fullName) return "Full name is required"
     return null;
