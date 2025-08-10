@@ -17,7 +17,6 @@ import { checkValidEmail, checkValidPassword, checkValidFullName } from '../util
 
 
 const Login = () => {
-
   const navigate = useNavigate();
 
   const [passwordToggle, setPasswordToggle] = useState(false);
@@ -85,7 +84,7 @@ const Login = () => {
         .then((user) => {
           console.log('User signed in successfully:', user);
           clearFormFields();
-          navigate("/browse")
+          // ! navigate("/browse")
         })
         .catch((error) => {
           console.log('User Sign-in Error', error.code, error.message);
@@ -112,7 +111,7 @@ const Login = () => {
           console.log('User signed up successfully:', updatedUser);
           clearFormFields();
           // Switch to signin form instead of navigating to browse
-          setIsSignin(true);
+          // ! setIsSignin(true);
           toast.success('User Signed Up Successfully!')
         })
         .catch((error) => {

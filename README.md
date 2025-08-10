@@ -21,4 +21,4 @@
 
 - enabled toaster on successfull signUp
 - storing the user on redux when [signIn / signOut]
-
+- fix : if the user is not loggedIn disable the routing for /browse ; viceversa for / ;
