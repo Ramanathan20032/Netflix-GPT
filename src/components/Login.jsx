@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
 import Header from './Header';
+import toast from 'react-hot-toast';
+import Toast from './Toast';
 
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../utils/firebase';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // ! Images
 import netflix_banner from '../assets/images/netflix-banner.jpg';
@@ -16,6 +18,8 @@ import { checkValidEmail, checkValidPassword, checkValidFullName } from '../util
 
 const Login = () => {
 
+  const navigate = useNavigate();
+
   const [passwordToggle, setPasswordToggle] = useState(false);
   const [isSignin, setIsSignin] = useState(true);
   const fullNameRef = useRef(null);
@@ -25,7 +29,6 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState(null)
   const [fullNameError, setFullNameError] = useState(null);
   const [loginError, setLoginError] = useState(null);
-  // const navigate = useNavigate();
 
   const toggleSignInForm = () => {
     setIsSignin(!isSignin)
@@ -82,6 +85,7 @@ const Login = () => {
         .then((user) => {
           console.log('User signed in successfully:', user);
           clearFormFields();
+          navigate("/browse")
         })
         .catch((error) => {
           console.log('User Sign-in Error', error.code, error.message);
@@ -96,14 +100,20 @@ const Login = () => {
           // Update the user's profile with their full name
           return updateProfile(userCredential.user, {
             displayName: fullName
-          }).then(() => {
-            // Return the user object for the next .then()
-            return userCredential.user;
           });
         })
-        .then((user) => {
-          console.log('User signed up successfully:', user);
+        .then(() => {
+          // Force a reload of the user to get the updated profile
+          return auth.currentUser.reload();
+        })
+        .then(() => {
+          // Now get the updated user object
+          const updatedUser = auth.currentUser;
+          console.log('User signed up successfully:', updatedUser);
           clearFormFields();
+          // Switch to signin form instead of navigating to browse
+          setIsSignin(true);
+          toast.success('User Signed Up Successfully!')
         })
         .catch((error) => {
           console.log('User Sign-up Error', error.code, error.message);
@@ -191,6 +201,9 @@ const Login = () => {
           <span onClick={toggleSignInForm} className='cursor-pointer text-white text-md hover:text-red-400 transition-all duration-300 underline ps-1.5'>{!isSignin ? 'Sign In.' : 'Sign Up Now.'}</span>
         </p>
       </form>
+
+      {/* Toast Notifications */}
+      <Toast />
     </div>
   );
 };
