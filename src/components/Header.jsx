@@ -22,8 +22,8 @@ const Header = () => {
   }
 
   useEffect(() => {
-    // * Auth State Changed Listener [signIn / signOut] eve
-    onAuthStateChanged(auth, (user) => {
+    // * Auth State Changed Listener [signIn / signOut] eventListener
+    const unsubscribed = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in
         const { uid, email, displayName } = user;
@@ -35,6 +35,8 @@ const Header = () => {
         navigate("/")
       }
     });
+
+    return () => unsubscribed();
 
   }, [])
 

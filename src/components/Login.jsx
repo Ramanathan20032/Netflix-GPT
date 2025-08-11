@@ -82,12 +82,12 @@ const Login = () => {
           return userCredential.user.reload().then(() => userCredential.user);
         })
         .then((user) => {
-          console.log('User signed in successfully:', user);
+          // ? console.log('User signed in successfully:', user);
           clearFormFields();
           // ! navigate("/browse")
         })
         .catch((error) => {
-          console.log('User Sign-in Error', error.code, error.message);
+          // ? console.log('User Sign-in Error', error.code, error.message);
           setLoginError(`${error.code} - ${error.message}`);
         });
     } else {
@@ -108,14 +108,14 @@ const Login = () => {
         .then(() => {
           // Now get the updated user object
           const updatedUser = auth.currentUser;
-          console.log('User signed up successfully:', updatedUser);
+          // ? console.log('User signed up successfully:', updatedUser);
           clearFormFields();
           // Switch to signin form instead of navigating to browse
           // ! setIsSignin(true);
           toast.success('User Signed Up Successfully!')
         })
         .catch((error) => {
-          console.log('User Sign-up Error', error.code, error.message);
+          // ? console.log('User Sign-up Error', error.code, error.message);
           setLoginError(`${error.code} - ${error.message}`);
         });
     }
