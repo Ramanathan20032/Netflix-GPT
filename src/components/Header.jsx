@@ -6,7 +6,7 @@ import { auth } from '../utils/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { addUser, removeUser } from '../slices/userSlice';
+import { addUser, removeUser } from '../store/slices/userSlice';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -28,10 +28,12 @@ const Header = () => {
         // User is signed in
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }))
+        // ? console.log("User is signed in", user)
         navigate("/browse")
       } else {
         // User is signed out
         dispatch(removeUser())
+        // ?console.log("User is signed out", user)
         navigate("/")
       }
     });
