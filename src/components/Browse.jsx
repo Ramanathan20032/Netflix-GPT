@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from './Header'
 import Error from './Error'
-import { moviesThunk } from '../store/thunks/moviesThunk'
+import { moviesListThunk } from '../store/thunks/moviesListThunk'
 import { IMAGE_BASE_URL } from '../utils/constants'
 
 const Browse = () => {
@@ -10,7 +10,7 @@ const Browse = () => {
   const { nowPlayingMovies, loading, error } = useSelector((store) => store.movies);
 
   useEffect(() => {
-    dispatch(moviesThunk());
+    dispatch(moviesListThunk());
   }, [dispatch]);
 
 

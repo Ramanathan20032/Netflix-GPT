@@ -1,7 +1,7 @@
 import { MOVIES_LISTING_API_OPTIONS, MOVIES_LISTING_API } from '../../utils/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const moviesThunk = createAsyncThunk(
+export const moviesListThunk = createAsyncThunk(
     'api/moviesList/',
     async(_, {rejectWithValue}) => {
         try {
