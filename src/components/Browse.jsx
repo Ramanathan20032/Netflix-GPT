@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Header from './Header'
 import Error from './Error'
 import { moviesThunk } from '../store/thunks/moviesThunk'
+import { IMAGE_BASE_URL } from '../utils/constants'
 
 const Browse = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const Browse = () => {
   useEffect(() => {
     dispatch(moviesThunk());
   }, [dispatch]);
+
 
   return (
     <>
@@ -28,7 +30,13 @@ const Browse = () => {
           </h1>
           {nowPlayingMovies.length > 0 && (
             <div className='text-white text-center top-3/4 left-1/2 transform -translate-x-1/2 absolute'>
-              <p>Movies loaded: {nowPlayingMovies.length}</p>
+              {nowPlayingMovies.map((movie) => (
+                <div key={movie.id}>
+                  <div className='card'>
+                    <img src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} />
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>

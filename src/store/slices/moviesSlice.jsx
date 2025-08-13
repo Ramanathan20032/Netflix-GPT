@@ -8,7 +8,7 @@ const moviesSlice = createSlice({
         loading: false,
         error: null
     },
-    extraReducers: (builder) => {
+    extraReducers: (builder) => { 
         builder
         .addCase(moviesThunk.pending, (state) => {
             state.loading = true;
@@ -28,5 +28,5 @@ const moviesSlice = createSlice({
     }
 });
 
-export const { setNowPlayingMovies, setLoading, setError } = moviesSlice.actions;
+
 export default moviesSlice.reducer;

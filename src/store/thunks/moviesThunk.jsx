@@ -1,13 +1,13 @@
-import { API_OPTIONS, NOW_PLAYING_MOVIES_API } from '../../utils/constants';
+import { MOVIES_LISTING_API_OPTIONS, MOVIES_LISTING_API } from '../../utils/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const moviesThunk = createAsyncThunk(
-    'api/movies/nowPlaying',
+    'api/moviesList/',
     async(_, {rejectWithValue}) => {
         try {
             const response = await fetch(
-                NOW_PLAYING_MOVIES_API,
-                API_OPTIONS
+                MOVIES_LISTING_API,
+                MOVIES_LISTING_API_OPTIONS
             );
 
             if (!response.ok) { 
@@ -15,6 +15,7 @@ export const moviesThunk = createAsyncThunk(
             }
 
             const data = await response.json();
+            console.log("NOW_PLAYING_MOVIES", data.results);
             return data.results;
         } catch (error) {
             return rejectWithValue(error.message);

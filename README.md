@@ -22,3 +22,12 @@
 - enabled toaster on successfull signUp
 - storing the user on redux when [signIn / signOut]
 - fix : if the user is not loggedIn disable the routing for /browse ; viceversa for / ;
+
+
+TMDB API Call Implementation
+
+- Registered on TMDB and obtained the API key.
+- Created a Redux slice for 'api/movies/nowPlaying'. (Movies)
+- Implemented an async thunk as middleware to fetch data from the API and synchronize it with the Redux state.
+
+
