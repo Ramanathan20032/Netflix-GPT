@@ -1,16 +1,27 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+// ! components
 import Header from './Header'
 import Error from './Error'
+import LoadingSpinner from './LoadingSpinner'
+
+// ! thunks
 import { moviesListThunk } from '../store/thunks/moviesListThunk'
+
+// ! constants
 import { IMAGE_BASE_URL } from '../utils/constants'
+
 
 const Browse = () => {
   const dispatch = useDispatch();
-  const { nowPlayingMovies, loading, error } = useSelector((store) => store.movies);
+  const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies, loading, error } = useSelector((store) => store.movies);
 
   useEffect(() => {
-    dispatch(moviesListThunk());
+    dispatch(moviesListThunk('now_playing'));
+    dispatch(moviesListThunk('popular'));
+    dispatch(moviesListThunk('top_rated'));
+    dispatch(moviesListThunk('upcoming'));
   }, [dispatch]);
 
 
@@ -19,7 +30,7 @@ const Browse = () => {
       <Header />
       {loading ? (
         <div className='w-full h-screen flex items-center justify-center'>
-          <h1 className='text-white text-4xl font-bold'>Loading...</h1>
+          <LoadingSpinner />
         </div>
       ) : error ? (
         <Error />

@@ -5,6 +5,9 @@ const moviesListSlice = createSlice({
     name: "movies",
     initialState: {
         nowPlayingMovies: [],
+        popularMovies: [],
+        topRatedMovies: [],
+        upcomingMovies: [],
         loading: false,
         error: null
     },
@@ -13,17 +16,18 @@ const moviesListSlice = createSlice({
             .addCase(moviesListThunk.pending, (state) => {
                 state.loading = true;
                 state.error = null;
-                state.nowPlayingMovies = [];
             })
             .addCase(moviesListThunk.fulfilled, (state, action) => {
-                state.nowPlayingMovies = action.payload;
+                const { category, moviesList } = action.payload;
+                // dynamic update the state  state[nowPlayingMovies] = data.results
+                // if the category is not matched with the existing state[nowPlayingMovies], will create new state[now_playing] = moviesList
+                state[category] = moviesList;
                 state.loading = false;
                 state.error = null;
             })
             .addCase(moviesListThunk.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-                state.nowPlayingMovies = [];
             })
     }
 });

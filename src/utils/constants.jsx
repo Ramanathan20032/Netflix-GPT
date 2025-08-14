@@ -1,6 +1,6 @@
 export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500/'
 
-export const MOVIES_LISTING_API = 'https://api.themoviedb.org/3/movie/now_playing?page=1';
+// export const MOVIES_LISTING_API = 'https://api.themoviedb.org/3/movie/now_playing?page=1';
 
 export const MOVIES_LISTING_API_OPTIONS = {
   method: 'GET',
