@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { moviesListThunk } from "../thunks/moviesListThunk";
+import { movieTeaserThunk } from "../thunks/moviesTeaserThunk";
 
 const moviesListSlice = createSlice({
     name: "movies",
@@ -8,6 +9,7 @@ const moviesListSlice = createSlice({
         popularMovies: [],
         topRatedMovies: [],
         upcomingMovies: [],
+        movieTeaser: [],
         loading: false,
         error: null
     },
@@ -24,6 +26,9 @@ const moviesListSlice = createSlice({
                 state[category] = moviesList;
                 state.loading = false;
                 state.error = null;
+            })
+            .addCase(movieTeaserThunk.fulfilled, (state, action) => {
+                state.movieTeaser = action.payload;
             })
             .addCase(moviesListThunk.rejected, (state, action) => {
                 state.loading = false;

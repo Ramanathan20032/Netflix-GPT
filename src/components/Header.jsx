@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import netflix_logo from '../assets/logo/netflix-logo.png'
 import netflix_avatar from '../assets/images/netflix-profile.jpg'
 import { signOut } from "firebase/auth";
@@ -7,11 +7,14 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../store/slices/userSlice';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  const [showDropdown, setShowDropdown] = useState(false);
+  console.log("current user", user);
 
   const handleSignOut = () => {
     signOut(auth).then(() => {
@@ -33,7 +36,7 @@ const Header = () => {
       } else {
         // User is signed out
         dispatch(removeUser())
-        // ?console.log("User is signed out", user)
+        // ? console.log("User is signed out", user)
         navigate("/")
       }
     });
@@ -43,8 +46,10 @@ const Header = () => {
   }, [])
 
   return (
-    <div className='absolute w-full bg-gradient-to-b from-black/85 px-10 py-3 flex justify-between items-center'>
-      <img src={netflix_logo} className='w-44' alt='logo' />
+    <div className='absolute w-full bg-gradient-to-b from-black/85 px-10 py-3 flex justify-between items-center z-50'>
+      <Link to="/browse">
+        <img src={netflix_logo} className='w-44 cursor-pointer' alt='logo' />
+      </Link>
       {user && <div className='flex items-center gap-x-3'>
         <img src={netflix_avatar} className='w-9.5 rounded-md' alt='avatar' />
         <button onClick={handleSignOut} className='text-white text-md font-semibold border border-white rounded-md px-4 py-1.5 hover:bg-white hover:text-black transition-all duration-300 cursor-pointer'>Sign Out</button>

@@ -21,7 +21,8 @@ export const moviesListThunk = createAsyncThunk(
             }
 
             const data = await response.json();
-            console.log(`${category}_Movies`, data.results);
+            // ? console.log(`${category}_Movies`, data.results);
+            console.log("MOVIES LISTING DATA SUCCESSFULLY FETCHED");
             return { category : categoryMapping[category], moviesList: data.results };  
         } catch (error) {
             return rejectWithValue(error.message);
