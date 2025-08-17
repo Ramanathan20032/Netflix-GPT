@@ -35,7 +35,10 @@ const Browse = () => {
       ) : error ? (
         <Error />
       ) : (
-        <MainContainer />
+        <>
+          <MainContainer />
+          <MainContainer />
+        </>
       )}
     </div>
   )
