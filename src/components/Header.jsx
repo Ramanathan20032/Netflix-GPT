@@ -45,9 +45,9 @@ const Header = () => {
   }, [])
 
   return (
-    <div className='fixed w-full bg-gradient-to-b from-black/85 px-10 py-3 flex justify-between items-center z-50'>
+    <div className='fixed w-full bg-gradient-to-b from-black/100 px-10 py-3 flex justify-between items-center z-50'>
       <Link to="/browse">
-        <img src={netflix_logo} className='w-44 cursor-pointer' alt='logo' />
+        <img src={netflix_logo} className='w-44 cursor-pointer' alt='logo'/>
       </Link>
 
       {user && (

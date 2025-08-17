@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root{
+:root {
   --inter: "Inter", sans-serif;
   --gabarito: "Gabarito", sans-serif;
   --epilogue: "Epilogue", sans-serif;
@@ -12,11 +12,24 @@
   --fredoka: "Fredoka", sans-serif;
 }
 
-*{
-  box-sizing: border-box; 
+* {
+  box-sizing: border-box;
   font-family: var(--nunito);
 }
 
-body{
-  background-color: #363636;
+body {
+  background-color: #000000;
+}
+
+/* Custom scrollbar utilities */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }

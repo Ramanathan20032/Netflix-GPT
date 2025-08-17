@@ -5,10 +5,8 @@ import { IMAGE_BASE_URL  } from "../utils/constants";
 const VideoTitle = ({ spotLightMovie }) => {
 
     return (
-        <div className="absolute bottom-30 left-14 z-20 max-w-md text-white">
-
-            {/* Movie Poster */}    
-            <img src={IMAGE_BASE_URL + spotLightMovie?.poster_path} alt="" className="w-30 h-45 object-cover" />
+        // <div className="absolute bottom-60 left-14 z-20 max-w-md text-white">
+        <div className="absolute bottom-1/3 left-14 z-20 max-w-md text-white">
 
             {/* Movie Title */}
             <h1 className="text-5xl font-bold mb-4 drop-shadow-2xl">

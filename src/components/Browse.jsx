@@ -6,6 +6,7 @@ import Header from './Header'
 import Error from './Error'
 import LoadingSpinner from './LoadingSpinner'
 import MainContainer from './MainContainer'
+import SecondaryContainer from './SecondaryContainer'
 
 // ! thunks
 import { moviesListThunk } from '../store/thunks/moviesListThunk'
@@ -37,7 +38,7 @@ const Browse = () => {
       ) : (
         <>
           <MainContainer />
-          {/* <MainContainer /> */}
+          <SecondaryContainer/>
         </>
       )}
     </div>
