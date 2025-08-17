@@ -13,7 +13,11 @@ export const moviesListThunk = createAsyncThunk(
     'api/moviesList',
     async (category, { rejectWithValue }) => {
         try {
-            const MOVIES_LISTING_API = `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`;
+            // ? API for all movies
+            // const MOVIES_LISTING_API = `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`;
+
+            // ? API for Indian movies
+            const MOVIES_LISTING_API = `https://api.themoviedb.org/3/movie/${category}?language=en-US&region=IN&page=1&with_origin_country=IN&include_adult=false`;
             const response = await fetch(MOVIES_LISTING_API, MOVIES_LISTING_API_OPTIONS);
 
             if (!response.ok) {
@@ -22,8 +26,8 @@ export const moviesListThunk = createAsyncThunk(
 
             const data = await response.json();
             // ? console.log(`${category}_Movies`, data.results);
-            console.log("MOVIES LISTING DATA SUCCESSFULLY FETCHED");
-            return { category : categoryMapping[category], moviesList: data.results };  
+            console.log("INDIAN MOVIES LISTING DATA SUCCESSFULLY FETCHED");
+            return { category: categoryMapping[category], moviesList: data.results };
         } catch (error) {
             return rejectWithValue(error.message);
         }

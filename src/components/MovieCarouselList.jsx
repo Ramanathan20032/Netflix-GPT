@@ -1,7 +1,10 @@
 import MovieCarouselCard from "./MovieCarouselCard";
+import ShimmerMovieCard from "./ShimmerMovieCard";
 
-const MovieCarouselList = ({ title, moviesData }) => {
-    if (!moviesData || moviesData.length === 0) return null;
+const MovieCarouselList = ({ title, moviesData, isLoading = false }) => {
+    console.log(moviesData);
+    // Early return if no data and not loading
+    if (!isLoading && (!moviesData || moviesData.length === 0)) return null;
 
     return (
         <div className="mb-10">
@@ -12,12 +15,22 @@ const MovieCarouselList = ({ title, moviesData }) => {
                 </svg>
             </div>
             <div className="relative">
-                <div className="flex overflow-x-scroll scrollbar-hide gap-4 px-1 py-3">
-                    {moviesData.map((movie) => (
-                        <div key={movie.id} className="flex-shrink-0">
-                            <MovieCarouselCard movie={movie} />
-                        </div>
-                    ))}
+                <div className="flex overflow-x-scroll scrollbar-hide gap-5 px-1 py-3">
+                    {isLoading ? (
+                        // Show 8 shimmer cards while loading
+                        Array.from({ length: 8 }).map((_, index) => (
+                            <div key={index} className="flex-shrink-0">
+                                <ShimmerMovieCard />
+                            </div>
+                        ))
+                    ) : (
+                        // Show actual movie cards when data is available
+                        moviesData.map((movie) => (
+                            <div key={movie.id} className="flex-shrink-0">
+                                <MovieCarouselCard movie={movie} />
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
         </div>
