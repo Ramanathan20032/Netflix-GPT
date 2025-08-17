@@ -21,7 +21,7 @@ const VideoPlayer = () => {
                 src={`https://www.youtube.com/embed/${trailerID}?autoplay=1&mute=${isMuted ? 1 : 0}&loop=1&playlist=${trailerID}&controls=0&rel=0&modestbranding=1&showinfo=0&disablekb=1&fs=0&iv_load_policy=3&cc_load_policy=0&enablejsapi=1`}
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
+                allowFullScreen            
                 frameBorder="0"
                 muted={isMuted}
             />

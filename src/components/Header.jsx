@@ -14,7 +14,6 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const [showDropdown, setShowDropdown] = useState(false);
-  console.log("current user", user);
 
   const handleSignOut = () => {
     signOut(auth).then(() => {
