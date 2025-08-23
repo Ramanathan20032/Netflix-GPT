@@ -4,7 +4,7 @@ import ShimmerMovieCard from "./ShimmerMovieCard";
 const MovieCarouselList = ({ title, moviesData, isLoading = false }) => {
     console.log(moviesData);
     // Early return if no data and not loading
-    if (!isLoading && (!moviesData || moviesData.length === 0)) return null;
+    if (!isLoading && (!moviesData || moviesData?.length === 0)) return null;
 
     return (
         <div className="mb-10">
@@ -25,8 +25,8 @@ const MovieCarouselList = ({ title, moviesData, isLoading = false }) => {
                         ))
                     ) : (
                         // Show actual movie cards when data is available
-                        moviesData.map((movie) => (
-                            <div key={movie.id} className="flex-shrink-0">
+                        moviesData?.map((movie) => (
+                            <div key={movie?.id} className="flex-shrink-0">
                                 <MovieCarouselCard movie={movie} />
                             </div>
                         ))

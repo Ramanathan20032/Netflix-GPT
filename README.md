@@ -35,4 +35,6 @@ TMDB API Call Implementation
 - Make an API call for playing video on banner and store it in redux
 - embedded the youtube with the corresponding key
 
+- Integrated details API to get the info of the movie with dynamic movieID
+
 

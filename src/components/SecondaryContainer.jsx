@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import MovieCarouselList from "./MovieCarouselList";
 
 const SecondaryContainer = () => {
-   const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies } = useSelector((store) => store.movies);
+   const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies } = useSelector((store) => store?.movies);
 
    return (
       <div className="py-8 w-[95%] mx-auto">

@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import Login from './Login'
 import Browse from './Browse'
 import Error from './Error'
+import MovieInfo from './MovieInfo';
 
 
 const Body = () => {
@@ -17,6 +18,10 @@ const Body = () => {
     {
       path: "/browse",
       element: <Browse />
+    },
+    {
+      path: "/movie/:movieId",
+      element: <MovieInfo />
     },
     {
       path: "*",

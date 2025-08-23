@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { IMAGE_BASE_URL } from "../utils/constants";
 
 const MovieCarouselCard = ({ movie }) => {
@@ -5,7 +6,7 @@ const MovieCarouselCard = ({ movie }) => {
     const movieTitle = movie?.title || movie?.name || "Unknown";
 
     return (
-        <div className="relative rounded-md overflow-hidden transition-all duration-300 hover:scale-105 hover:z-10 cursor-pointer group bg-gray-800">
+        <Link to={`/movie/${movie?.id}`} className="relative rounded-md overflow-hidden transition-all duration-300 hover:scale-105 hover:z-10 cursor-pointer group bg-gray-800">
             {imageUrl ? (
                 <img
                     src={imageUrl}
@@ -22,7 +23,7 @@ const MovieCarouselCard = ({ movie }) => {
                     </h3>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
