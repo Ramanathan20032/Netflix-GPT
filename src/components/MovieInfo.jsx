@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { moviesDetailThunk } from "../store/thunks/moviesDetailThunk";
 import LoadingSpinner from "./LoadingSpinner";
 import MovieInfoPage from "./MovieInfoPage";
+import Error from "./Error";
 
 const MovieInfo = () => {
     const { movieId } = useParams();
@@ -17,10 +18,13 @@ const MovieInfo = () => {
 
     return (
         <div className="text-white">
-            {loading ? <LoadingSpinner /> : (
+            {loading ? (
+                <LoadingSpinner />
+            ) : error ? (
+                <Error />
+            ) : (
                 <MovieInfoPage movieDetails={movieDetails} />
             )}
-            {error && <Error />}
         </div>
     )
 }
