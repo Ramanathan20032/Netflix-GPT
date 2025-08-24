@@ -5,15 +5,36 @@ import { moviesDetailThunk } from "../store/thunks/moviesDetailThunk";
 import LoadingSpinner from "./LoadingSpinner";
 import MovieInfoPage from "./MovieInfoPage";
 import Error from "./Error";
+import { clearMovieDetails } from "../store/slices/moviesDetailSlice";
 
 const MovieInfo = () => {
     const { movieId } = useParams();
     const dispatch = useDispatch();
-    const { movieDetails, loading, error } = useSelector((store) => store?.details);
+    const {
+        movieDetails,
+        movieCredits,
+        movieImages,
+        movieLists,
+        movieRecommendations,
+        movieReleaseDates,
+        movieReviews,
+        movieSimilar,
+        movieTranslations,
+        movieWatchProviders,
+        movieVideos,
+        loading,
+        error
+    } = useSelector((store) => store?.details);
     console.log(`MovieDetails: ${movieId}`, movieDetails);
 
     useEffect(() => {
+        // Fetch movie details when component mounts
         dispatch(moviesDetailThunk(movieId));
+
+        // Cleanup: clear details when component unmounts
+        return () => {
+            dispatch(clearMovieDetails());
+        };
     }, [dispatch, movieId]);
 
     return (
@@ -23,7 +44,19 @@ const MovieInfo = () => {
             ) : error ? (
                 <Error />
             ) : (
-                <MovieInfoPage movieDetails={movieDetails} />
+                <MovieInfoPage
+                    movieDetails={movieDetails}
+                    movieCredits={movieCredits}
+                    movieImages={movieImages}
+                    movieLists={movieLists}
+                    movieRecommendations={movieRecommendations}
+                    movieReleaseDates={movieReleaseDates}
+                    movieReviews={movieReviews}
+                    movieSimilar={movieSimilar}
+                    movieTranslations={movieTranslations}
+                    movieWatchProviders={movieWatchProviders}
+                    movieVideos={movieVideos}
+                />
             )}
         </div>
     )
