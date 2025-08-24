@@ -1,34 +1,7 @@
-import { IMAGE_BASE_URL } from "../utils/constants";
+import { IMAGE_BASE_URL, formatRuntime, formatDate, getRatingColor } from "../utils/constants";
 
 const MovieInfoBannerPage = ({ movieDetails }) => {
     if (!movieDetails) return null;
-
-    // ? Format Runtime
-    const formatRuntime = (minutes) => {
-        if (!minutes) return '';
-        const hours = Math.floor(minutes / 60);
-        const mins = minutes % 60;
-        return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
-    };
-
-    // ? Format Date
-    const formatDate = (dateString) => {
-        if (!dateString) return '';
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    };
-
-    // ? Get Rating Color
-    const getRatingColor = (rating) => {
-        if (!rating) return 'text-gray-400';
-        if (rating >= 7) return 'text-green-400';
-        if (rating >= 5) return 'text-yellow-400';
-        return 'text-red-400';
-    };
 
     return (
         <>
@@ -69,7 +42,7 @@ const MovieInfoBannerPage = ({ movieDetails }) => {
                                     {`${formatDate(movieDetails?.release_date)}` || 'TBA'}
                                 </span>
                             )}
-                            {/* movieDetails?.runtime != null --> check for null and undefined */}
+                            {/* [movieDetails?.runtime != null] --> check for [movieDetails?.runtime!== null && movieDetails?.runtime!== undefined] */}
                             {movieDetails?.runtime != null && (
                                 <span className="text-gray-300">
                                     {formatRuntime(movieDetails?.runtime) || 'TBA'}

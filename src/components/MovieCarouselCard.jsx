@@ -31,7 +31,7 @@ const MovieCarouselCard = ({ movie }) => {
                                             // Cast
                                             ? `${movie?.character} | ${movie?.known_for_department}`
                                             // Crew
-                                            : `${movie?.known_for_department} | ${movie?.job}`
+                                            : `${movie?.department || movie?.known_for_department} | ${movie?.job}`
                                         }
                                     </p>
                                 )}

@@ -1,39 +1,12 @@
-import { IMAGE_BASE_URL } from "../utils/constants";
+import { IMAGE_BASE_URL, formatRuntime, formatDate, getRatingColor } from "../utils/constants";
 
-const MovieInfoDetail = ({movieDetails}) => {
-    if(!movieDetails) return null;
-
-    // ? Format Runtime
-    const formatRuntime = (minutes) => {
-        if (!minutes) return '';
-        const hours = Math.floor(minutes / 60);
-        const mins = minutes % 60;
-        return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
-    };
-
-    // ? Format Date
-    const formatDate = (dateString) => {
-        if (!dateString) return '';
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    };
-
-    // ? Get Rating Color
-    const getRatingColor = (rating) => {
-        if (!rating) return 'text-gray-400';
-        if (rating >= 7) return 'text-green-400';
-        if (rating >= 5) return 'text-yellow-400';
-        return 'text-red-400';
-    };
+const MovieInfoDetail = ({ movieDetails, title }) => {
+    if (!movieDetails) return null;
 
     return (
         <>
             {/* Poster and Additional Details */}
-            <div className="flex flex-col sm:flex-row gap-8 mb-12">
+            <div className="flex flex-col sm:flex-row gap-8 mb-11">
                 {/* Poster */}
                 {movieDetails?.poster_path && (
                     <div className="flex-shrink-0">
@@ -47,7 +20,7 @@ const MovieInfoDetail = ({movieDetails}) => {
 
                 {/* Movie Details */}
                 <div className="flex-1">
-                    <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">Movie Details</h2>
+                    <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
 
                     <div className="space-y-4">
                         {(movieDetails?.original_title || movieDetails?.title) && (
