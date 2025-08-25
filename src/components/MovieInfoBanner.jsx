@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import { IMAGE_BASE_URL, formatRuntime, formatDate, getRatingColor } from "../utils/constants";
 
-const MovieInfoBannerPage = ({ movieDetails }) => {
+const MovieInfoBannerPage = () => {
+    const { movieDetails } = useSelector((store) => store?.details);
     if (!movieDetails) return null;
 
     return (
@@ -49,13 +51,13 @@ const MovieInfoBannerPage = ({ movieDetails }) => {
                                 </span>
                             )}
                             {movieDetails?.adult && (
-                                <span className="bg-red-600 text-white px-2 py-1 rounded text-xs">
+                                <span className="bg-red-600 text-white px-2 py-1 rounded text-xs sm:text-sm">
                                     TV-MA
                                     {/* {movieDetails?.adult ? '18+' : '13+'} */}
                                 </span>
                             )}
                             {movieDetails?.status && (
-                                <span className="bg-green-500 text-white px-2 py-1 rounded text-xs">
+                                <span className="bg-green-500 text-white px-2 py-1 rounded text-xs sm:text-sm font-medium">
                                     {movieDetails?.status}
                                 </span>
                             )}
@@ -120,7 +122,7 @@ const MovieInfoBannerPage = ({ movieDetails }) => {
 
                         {/* Overview */}
                         {movieDetails?.overview && (
-                            <p className="text-gray-300 text-lg max-w-3xl leading-relaxed sm:line-clamp-2 line-clamp-3">
+                            <p className="text-gray-300 text-lg max-w-3xl leading-relaxed line-clamp-2">
                                 {movieDetails?.overview}
                             </p>
                         )}

@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import { IMAGE_BASE_URL, formatRuntime, formatDate, getRatingColor } from "../utils/constants";
 
-const MovieInfoDetail = ({ movieDetails, title }) => {
+const MovieInfoDetail = ({ title }) => {
+    const { movieDetails } = useSelector((store) => store?.details);
     if (!movieDetails) return null;
 
     return (

@@ -1,4 +1,9 @@
-const MovieInfoOverView = ({ movieDetails, title }) => {
+import { useSelector } from "react-redux";
+
+const MovieInfoOverView = ({ title }) => {
+    const { movieDetails } = useSelector((store) => store?.details);
+    if (!movieDetails) return null;
+
     return (
         <>
             {movieDetails?.overview && (

@@ -1,31 +1,21 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
+// Store Thunks
 import { moviesDetailThunk } from "../store/thunks/moviesDetailThunk";
+import { clearMovieDetails } from "../store/slices/moviesDetailSlice";
+
+// Components
 import LoadingSpinner from "./LoadingSpinner";
 import MovieInfoPage from "./MovieInfoPage";
 import Error from "./Error";
-import { clearMovieDetails } from "../store/slices/moviesDetailSlice";
 
 const MovieInfo = () => {
     const { movieId } = useParams();
     const dispatch = useDispatch();
-    const {
-        movieDetails,
-        movieCredits,
-        movieImages,
-        movieLists,
-        movieRecommendations,
-        movieReleaseDates,
-        movieReviews,
-        movieSimilar,
-        movieTranslations,
-        movieWatchProviders,
-        movieVideos,
-        loading,
-        error
-    } = useSelector((store) => store?.details);
-    console.log(`MovieDetails: ${movieId}`, movieDetails);
+    const { loading, error } = useSelector((store) => store?.details);
+    console.log(`MovieDetails: ${movieId}`);
 
     useEffect(() => {
         // Fetch movie details when component mounts
@@ -44,19 +34,7 @@ const MovieInfo = () => {
             ) : error ? (
                 <Error />
             ) : (
-                <MovieInfoPage
-                    movieDetails={movieDetails}
-                    movieCredits={movieCredits}
-                    movieImages={movieImages}
-                    movieLists={movieLists}
-                    movieRecommendations={movieRecommendations}
-                    movieReleaseDates={movieReleaseDates}
-                    movieReviews={movieReviews}
-                    movieSimilar={movieSimilar}
-                    movieTranslations={movieTranslations}
-                    movieWatchProviders={movieWatchProviders}
-                    movieVideos={movieVideos}
-                />
+                <MovieInfoPage />
             )}
         </div>
     )
