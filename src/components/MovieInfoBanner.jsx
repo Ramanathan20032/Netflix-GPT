@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { IMAGE_BASE_URL, formatRuntime, formatDate, getRatingColor } from "../utils/constants";
-import StarRating from "./StarRating";
+import StarRating from "./ui/StarRating";
 
 const MovieInfoBannerPage = () => {
     const { movieDetails } = useSelector((store) => store?.details);
@@ -68,7 +68,7 @@ const MovieInfoBannerPage = () => {
                         <div className="flex flex-wrap items-center gap-4 mb-6">
                             {movieDetails?.vote_average != null && (
                                 <div className="flex items-center gap-3">
-                                    <StarRating rating={movieDetails?.vote_average}/>
+                                    <StarRating rating={movieDetails?.vote_average} />
                                     <div>
                                         <span className={`font-semibold ${getRatingColor(movieDetails?.vote_average)}`}>
                                             {movieDetails?.vote_average.toFixed(1)}

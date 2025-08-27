@@ -1,5 +1,5 @@
 import MovieCarouselCard from "./MovieCarouselCard";
-import ShimmerMovieCard from "./ShimmerMovieCard";
+import ShimmerMovieCard from "./ui/ShimmerMovieCard";
 
 const MovieCarouselList = ({ title, moviesData, isLoading = false }) => {
     console.log(moviesData);

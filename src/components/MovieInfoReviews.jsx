@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { formatDate } from "../utils/constants";
-import StarRating from "./StarRating";
+import StarRating from "./ui/StarRating";
 import { useState } from "react";
 
 const MovieInfoReviews = ({ title }) => {
@@ -40,12 +40,12 @@ const MovieInfoReviews = ({ title }) => {
                 }
             </div>
             {movieReviews?.total_results > 4 && !showAllReviews && (
-                    <p className="text-sm text-gray-400 text-center mt-4 cursor-pointer hover:underline"
-                        onClick={() => { setShowAllReviews(true) }}
-                    >
-                        +{movieReviews?.total_results - 4} more reviews
-                    </p>
-                )
+                <p className="text-sm text-gray-400 text-center mt-4 cursor-pointer hover:underline"
+                    onClick={() => { setShowAllReviews(true) }}
+                >
+                    +{movieReviews?.total_results - 4} more reviews
+                </p>
+            )
             }
         </>
     )

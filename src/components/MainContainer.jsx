@@ -26,7 +26,7 @@ const MainContainer = () => {
         <MuteProvider>
             <div className="w-full h-full relative">
                 {/* Video Player - Bottom Layer */}
-                {/* <VideoPlayer /> */}
+                <VideoPlayer />
 
                 {/* Enhanced Black Overlay with stronger left gradient - Middle Layer */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 via-black/70 via-black/50 to-transparent z-10 pointer-events-none"></div>
