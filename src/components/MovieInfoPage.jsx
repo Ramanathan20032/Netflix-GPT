@@ -8,6 +8,7 @@ import MovieInfoOverView from "./MovieInfoOverView";
 import MovieCarouselList from "./MovieCarouselList";
 import MovieProductionInfo from "./MovieProductionInfo";
 import MovieInfoLanguage from "./MovieInfoLanguage";
+import MovieInfoReviews from "./MovieInfoReviews";
 
 const MovieInfoPage = () => {
     const {
@@ -68,6 +69,10 @@ const MovieInfoPage = () => {
                     moviesData={movieSimilar?.results}
                     isLoading={!movieSimilar || movieSimilar?.results?.length === 0}
                 />
+
+                {/* Reviews */}
+                <MovieInfoReviews title="Reviews" />
+                
             </div>
         </div>
     );
