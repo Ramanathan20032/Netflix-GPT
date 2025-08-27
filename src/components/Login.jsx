@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Header from './Header';
 import toast from 'react-hot-toast';
-import Toast from './Toast';
+import Toast from './ui/Toast';
 
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../utils/firebase';

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 // ! components
 import Header from './Header'
 import Error from './Error'
-import LoadingSpinner from './LoadingSpinner'
+import LoadingSpinner from './ui/LoadingSpinner'
 import MainContainer from './MainContainer'
 import SecondaryContainer from './SecondaryContainer'
 
