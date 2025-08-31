@@ -8,7 +8,7 @@ import { clearMovieDetails } from "../store/slices/moviesDetailSlice";
 
 // Components
 import LoadingSpinner from "./ui/LoadingSpinner";
-import MovieInfoPage from "./MovieInfoPage";
+import MovieInfoPage from "./movieDetailsPage/MovieInfoPage";
 import Error from "./Error";
 
 const MovieInfo = () => {

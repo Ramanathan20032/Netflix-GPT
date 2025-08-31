@@ -5,20 +5,22 @@ import MovieInfoBanner from "./MovieInfoBanner";
 import MovieInfoDetail from "./MovieInfoDetail";
 import MovieInfoCtaButtons from "./MovieInfoCtaButtons";
 import MovieInfoOverView from "./MovieInfoOverView";
-import MovieCarouselList from "./MovieCarouselList";
+import MovieCarouselList from "../MovieCarouselList";
 import MovieProductionInfo from "./MovieProductionInfo";
 import MovieInfoLanguage from "./MovieInfoLanguage";
 import MovieInfoReviews from "./MovieInfoReviews";
 
 const MovieInfoPage = () => {
     const {
+        movieDetails,
         movieCredits,
         movieRecommendations,
         movieReviews,
         movieSimilar,
         movieVideos,
+        loading,
     } = useSelector((store) => store?.details);
-    if (!movieCredits || !movieRecommendations || !movieReviews || !movieSimilar || !movieVideos) return null;
+    if (!movieDetails || !movieCredits || !movieRecommendations || !movieReviews || !movieSimilar || !movieVideos) return null;
 
     return (
         <div className="min-h-screen bg-black">
@@ -46,33 +48,39 @@ const MovieInfoPage = () => {
                 <MovieCarouselList
                     title="Cast"
                     moviesData={movieCredits?.cast}
-                    isLoading={!movieCredits || movieCredits?.cast?.length === 0}
+                    isLoading={loading}
                 />
 
                 {/* Crew */}
                 <MovieCarouselList
                     title="Crew"
                     moviesData={movieCredits?.crew}
-                    isLoading={!movieCredits || movieCredits?.crew?.length === 0}
+                    isLoading={loading}
                 />
 
                 {/* Recommendations */}
                 <MovieCarouselList
                     title="Recommendations"
                     moviesData={movieRecommendations?.results}
-                    isLoading={!movieRecommendations || movieRecommendations?.results?.length === 0}
+                    isLoading={loading}
+                    movieId={movieDetails?.id}
+                    mediaType="movie"
+                    type="recommendations"
                 />
 
                 {/* Similar Movies */}
                 <MovieCarouselList
                     title="Similar Movies"
                     moviesData={movieSimilar?.results}
-                    isLoading={!movieSimilar || movieSimilar?.results?.length === 0}
+                    isLoading={loading}
+                    movieId={movieDetails?.id}
+                    mediaType="movie"
+                    type="similar"
                 />
 
                 {/* Reviews */}
                 <MovieInfoReviews title="Reviews" />
-                
+
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { IMAGE_BASE_URL, formatRuntime, formatDate, getRatingColor } from "../utils/constants";
-import StarRating from "./ui/StarRating";
+import { IMAGE_BASE_URL, formatRuntime, formatDate, getRatingColor } from "../../utils/constants";
+import StarRating from "../ui/StarRating";
 
 const MovieInfoBannerPage = () => {
     const { movieDetails } = useSelector((store) => store?.details);

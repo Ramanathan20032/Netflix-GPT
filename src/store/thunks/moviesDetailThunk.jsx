@@ -42,25 +42,19 @@ export const moviesDetailThunk = createAsyncThunk(
                 details,
                 credits,
                 images,
-                lists,
                 recommendations,
-                releaseDates,
                 reviews,
                 similar,
                 translations,
-                watchProviders,
                 videos
             ] = await Promise.all([
                 fetchMovieData('', movieId), // Basic details
                 fetchMovieData('/credits', movieId),
                 fetchMovieData('/images', movieId),
-                fetchMovieData('/lists', movieId),
                 fetchMovieData('/recommendations', movieId),
-                fetchMovieData('/release_dates', movieId),
                 fetchMovieData('/reviews', movieId),
                 fetchMovieData('/similar', movieId),
                 fetchMovieData('/translations', movieId),
-                fetchMovieData('/watch/providers', movieId),
                 fetchMovieData('/videos', movieId)
             ]);
 
@@ -70,13 +64,10 @@ export const moviesDetailThunk = createAsyncThunk(
                 details,
                 credits,
                 images,
-                lists,
                 recommendations,
-                releaseDates,
                 reviews,
                 similar,
                 translations,
-                watchProviders,
                 videos,
             };
 

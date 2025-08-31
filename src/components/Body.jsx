@@ -1,15 +1,15 @@
 import React from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 import Login from './Login'
 import Browse from './Browse'
 import Error from './Error'
 import MovieInfo from './MovieInfo';
+import MovieList from './MovieList';
 
 
 const Body = () => {
-  
+
   const appRouter = createBrowserRouter([
     {
       path: "/",
@@ -22,6 +22,10 @@ const Body = () => {
     {
       path: "/movie/:movieId",
       element: <MovieInfo />
+    },
+    {
+      path: "/:mediaType/:movieId/suggestions/:type",
+      element: <MovieList />
     },
     {
       path: "*",
