@@ -6,6 +6,7 @@ import Browse from './Browse'
 import Error from './Error'
 import MovieInfo from './MovieInfo';
 import MovieList from './MovieList';
+import CastCrewList from './CastCrewList';
 
 
 const Body = () => {
@@ -20,8 +21,12 @@ const Body = () => {
       element: <Browse />
     },
     {
-      path: "/movie/:movieId",
+      path: "/:mediaType/:movieId",
       element: <MovieInfo />
+    },
+    {
+      path: "/:mediaType/:movieId/people/:type",
+      element: <CastCrewList />
     },
     {
       path: "/:mediaType/:movieId/suggestions/:type",

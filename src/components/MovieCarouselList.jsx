@@ -3,16 +3,23 @@ import MovieCarouselCard from "./MovieCarouselCard";
 import ShimmerMovieCard from "./ui/ShimmerMovieCard";
 
 const MovieCarouselList = ({ title, moviesData, isLoading = false, type, movieId, mediaType }) => {
-    console.log(moviesData);
     const navigate = useNavigate();
     const hasData = moviesData && moviesData.length > 0
+
+    const handleNavigate = () => {
+        if (type === "recommendations" || type === "similar") {
+            navigate(`/${mediaType}/${movieId}/suggestions/${type}`);
+        } else if (type === "cast" || type === "crew") {
+            navigate(`/${mediaType}/${movieId}/people/${type}`);
+        } 
+    }
 
     return (
         <div className="mb-10">
             {/* Header section */}
             {hasData && <div
                 className="text-white hover:text-gray-400 flex items-center gap-2 px-1 mb-4 cursor-pointer w-fit group"
-                onClick={() => navigate(`/${mediaType}/${movieId}/suggestions/${type}`)}
+                onClick={handleNavigate}
             >
                 <h1 className="text-2xl font-bold">{title}</h1>
                 <svg
@@ -50,7 +57,7 @@ const MovieCarouselList = ({ title, moviesData, isLoading = false, type, movieId
                     <div className="flex overflow-x-scroll scrollbar-hide gap-5 px-1 py-3">
                         {moviesData.map((movie) => (
                             <div key={movie?.id} className="flex-shrink-0">
-                                <MovieCarouselCard movie={movie} />
+                                <MovieCarouselCard movie={movie} mediaType={mediaType} />
                             </div>
                         ))}
                     </div>

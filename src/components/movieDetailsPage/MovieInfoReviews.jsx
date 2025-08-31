@@ -3,11 +3,13 @@ import { formatDate } from "../../utils/constants";
 import StarRating from "../ui/StarRating";
 import { useState } from "react";
 
-const MovieInfoReviews = ({ title }) => {
+const MovieInfoReviews = ({ title, mediaType }) => {
     const { movieReviews } = useSelector((store) => store?.details);
-    if (!movieReviews) return null;
+    const { tvReviews } = useSelector((store) => store?.tvDetail);
+    const reviews = mediaType === "movie" ? movieReviews : tvReviews;
+    if (!reviews) return null;
 
-    const hasData = movieReviews && movieReviews.results.length > 0
+    const hasData = reviews && reviews.results.length > 0
     const [showAllReviews, setShowAllReviews] = useState(false);
 
     const getLatestReview = (reviews) => {
@@ -26,12 +28,12 @@ const MovieInfoReviews = ({ title }) => {
                     <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {
-                            movieReviews?.results
+                            reviews?.results
                                 .filter((review) => review?.content !== "" || review?.author_details?.rating !== 0)
                                 // sort by created_at ascending
                                 .sort((a, b) => new Date(b?.created_at) - new Date(a?.created_at))
                                 .sort((a, b) => b.author_details.rating - a.author_details.rating)
-                                .slice(0, showAllReviews ? movieReviews?.total_results : 4)
+                                .slice(0, showAllReviews ? reviews?.total_results : 4)
                                 .map((review) => (
                                     <div key={review?.id} className="bg-white/15 text-white backdrop-blur-sm px-4.5 py-4 rounded-lg">
                                         <h3 className="text-lg md:text-xl font-bold mb-1.5 text-capitalize">{review?.author_details?.name || review?.author_details?.username || review?.author}</h3>
@@ -42,11 +44,11 @@ const MovieInfoReviews = ({ title }) => {
                                 ))
                         }
                     </div>
-                    {movieReviews?.total_results > 4 && !showAllReviews && (
+                    {reviews?.total_results > 4 && !showAllReviews && (
                         <p className="text-sm text-gray-400 text-center mt-4 cursor-pointer hover:underline"
                             onClick={() => { setShowAllReviews(true) }}
                         >
-                            +{movieReviews?.total_results - 4} more reviews
+                            +{reviews?.total_results - 4} more reviews
                         </p>
                     )}
                 </div>}

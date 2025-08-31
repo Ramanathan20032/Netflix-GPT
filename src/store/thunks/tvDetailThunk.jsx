@@ -2,10 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { MOVIES_LISTING_API_OPTIONS } from "../../utils/constants";
 
 // Helper function to fetch individual movie data
-const fetchMovieData = async (endpoint, movieId) => {
+const fetchTvData = async (endpoint, tvId) => {
     try {
-        const MOVIE_DETAIL_API = `https://api.themoviedb.org/3/movie/${movieId}${endpoint}?language=en-US`;
-        const response = await fetch(MOVIE_DETAIL_API, MOVIES_LISTING_API_OPTIONS);
+        const TV_DETAIL_API = `https://api.themoviedb.org/3/tv/${tvId}${endpoint}?language=en-US`;
+        const response = await fetch(TV_DETAIL_API, MOVIES_LISTING_API_OPTIONS);
 
         if (!response.ok) {
             throw new Error(`HTTP Error! Status: ${response.status}`);
@@ -19,11 +19,11 @@ const fetchMovieData = async (endpoint, movieId) => {
     }
 };
 
-export const moviesDetailThunk = createAsyncThunk(
-    'api/movieDetails',
-    async (movieId, { rejectWithValue }) => {
+export const tvDetailThunk = createAsyncThunk(
+    'api/tvDetail',
+    async (tvId, { rejectWithValue }) => {
         try {
-            // Fetch all movie data in parallel
+            // Fetch all tv data in parallel
             const [
                 details,
                 credits,
@@ -34,19 +34,19 @@ export const moviesDetailThunk = createAsyncThunk(
                 translations,
                 videos
             ] = await Promise.all([
-                fetchMovieData('', movieId), // Basic details
-                fetchMovieData('/credits', movieId),
-                fetchMovieData('/images', movieId),
-                fetchMovieData('/recommendations', movieId),
-                fetchMovieData('/reviews', movieId),
-                fetchMovieData('/similar', movieId),
-                fetchMovieData('/translations', movieId),
-                fetchMovieData('/videos', movieId)
+                fetchTvData('', tvId),
+                fetchTvData('/credits', tvId),
+                fetchTvData('/images', tvId),
+                fetchTvData('/recommendations', tvId),
+                fetchTvData('/reviews', tvId),
+                fetchTvData('/similar', tvId),
+                fetchTvData('/translations', tvId),
+                fetchTvData('/videos', tvId)
             ]);
 
             // Return structured data
-            const movieData = {
-                id: movieId,
+            const tvData = {
+                id: tvId,
                 details,
                 credits,
                 images,
@@ -57,11 +57,11 @@ export const moviesDetailThunk = createAsyncThunk(
                 videos,
             };
 
-            console.log("ALL MOVIE DATA SUCCESSFULLY FETCHED:", movieData);
-            return movieData;
+            console.log("ALL TV DATA SUCCESSFULLY FETCHED:", tvData);
+            return tvData;
         }
         catch (error) {
-            console.error("Error in moviesDetailThunk:", error);
+            console.error("Error in tvDetailThunk:", error);
             return rejectWithValue(error.message);
         }
     }

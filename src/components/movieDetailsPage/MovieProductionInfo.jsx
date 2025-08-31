@@ -1,17 +1,19 @@
 import { useSelector } from "react-redux";
 import { IMAGE_BASE_URL } from "../../utils/constants";
 
-const MovieProductionInfo = ({ title }) => {
+const MovieProductionInfo = ({ title, mediaType }) => {
     const { movieDetails } = useSelector((store) => store?.details);
-    if (!movieDetails) return null;
+    const { tvDetails } = useSelector((store) => store?.tvDetail);
+    const details = mediaType === "movie" ? movieDetails : tvDetails;
+    if (!details) return null;
 
     return (
         <>
-            {movieDetails?.production_companies && movieDetails?.production_companies?.filter((company) => company?.logo_path)?.length > 0 && (
+            {details?.production_companies && details?.production_companies?.filter((company) => company?.logo_path)?.length > 0 && (
                 <div className="mb-11">
                     <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4 p-4 py-6 rounded-lg bg-gray-800 bg-opacity-70 text-white">
-                        {movieDetails?.production_companies
+                        {details?.production_companies
                             ?.filter((company) => company?.logo_path)
                             ?.map((company) => (
                                 <div key={company?.id} className="text-center flex flex-col items-center justify-center border-1 border-gray-700 rounded-lg p-4">

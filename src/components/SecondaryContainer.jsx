@@ -12,41 +12,49 @@ const SecondaryContainer = () => {
                title="Now Playing"
                moviesData={nowPlayingMovies}
                isLoading={loading}
+               mediaType="movie"
             />
             <MovieCarouselList
                title="Top Rated"
                moviesData={topRatedMovies}
                isLoading={loading}
+               mediaType="movie"
             />
             <MovieCarouselList
                title="Popular Movies"
                moviesData={popularMovies}
                isLoading={loading}
+               mediaType="movie"
             />
             <MovieCarouselList
                title="Upcoming"
                moviesData={upcomingMovies}
                isLoading={loading}
+               mediaType="movie"
             />
             <MovieCarouselList
                title="Airing Today TV"
                moviesData={airingTodayTv}
-               isLoading={loading}
-            />
-            <MovieCarouselList
-               title="Top Rated TV"
-               moviesData={topRatedTv}
-               isLoading={loading}
+               isLoading={tvLoading}
+               mediaType="tv"
             />
             <MovieCarouselList
                title="Popular TV"
                moviesData={popularTv}
-               isLoading={loading}
+               isLoading={tvLoading}
+               mediaType="tv"
+            />
+            <MovieCarouselList
+               title="Top Rated TV"
+               moviesData={topRatedTv}
+               isLoading={tvLoading}
+               mediaType="tv"
             />
             <MovieCarouselList
                title="On The Air"
                moviesData={onTheAirTv}
-               isLoading={loading}
+               isLoading={tvLoading}
+               mediaType="tv"
             />
          </div>
       </div>

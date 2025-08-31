@@ -4,6 +4,7 @@ import moviesReducer from './slices/moviesListSlice'
 import tvListReducer from './slices/tvListSlice'
 import moviesDetailReducer from './slices/moviesDetailSlice'
 import moviesSuggestionReducer from './slices/moviesSuggestionSlice'
+import tvDetailReducer from './slices/tvDetailSlice'
 
 const appStore = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ const appStore = configureStore({
         movies: moviesReducer,
         tvList: tvListReducer,
         details: moviesDetailReducer,
+        tvDetail: tvDetailReducer,
         suggestions: moviesSuggestionReducer,
     }
 })

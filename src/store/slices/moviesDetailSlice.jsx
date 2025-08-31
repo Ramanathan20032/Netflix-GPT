@@ -7,13 +7,10 @@ const moviesDetailSlice = createSlice({
         movieDetails: null,
         movieCredits: null,
         movieImages: null,
-        movieLists: null,
         movieRecommendations: null,
-        movieReleaseDates: null,
         movieReviews: null,
         movieSimilar: null,
         movieTranslations: null,
-        movieWatchProviders: null,
         movieVideos: null,
         loading: false,
         error: null,
@@ -23,13 +20,10 @@ const moviesDetailSlice = createSlice({
             state.movieDetails = null;
             state.movieCredits = null;
             state.movieImages = null;
-            state.movieLists = null;
             state.movieRecommendations = null;
-            state.movieReleaseDates = null;
             state.movieReviews = null;
             state.movieSimilar = null;
             state.movieTranslations = null;
-            state.movieWatchProviders = null;
             state.movieVideos = null;
         }
     },
@@ -48,26 +42,20 @@ const moviesDetailSlice = createSlice({
                     details,
                     credits,
                     images,
-                    lists,
                     recommendations,
-                    releaseDates,
                     reviews,
                     similar,
                     translations,
-                    watchProviders,
                     videos,
                 } = action.payload;
 
                 state.movieDetails = details;
                 state.movieCredits = credits;
                 state.movieImages = images;
-                state.movieLists = lists;
                 state.movieRecommendations = recommendations;
-                state.movieReleaseDates = releaseDates;
                 state.movieReviews = reviews;
                 state.movieSimilar = similar;
                 state.movieTranslations = translations;
-                state.movieWatchProviders = watchProviders;
                 state.movieVideos = videos;
             })
             .addCase(moviesDetailThunk.rejected, (state, action) => {

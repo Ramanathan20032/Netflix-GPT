@@ -1,7 +1,6 @@
 import { MOVIES_LISTING_API_OPTIONS } from "../../utils/constants";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-
 const categoryMapping = {
     'airing_today': 'airingTodayTv',
     'on_the_air': 'onTheAirTv',
