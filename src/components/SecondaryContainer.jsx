@@ -2,7 +2,8 @@ import { useSelector } from "react-redux";
 import MovieCarouselList from "./MovieCarouselList";
 
 const SecondaryContainer = () => {
-   const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies } = useSelector((store) => store?.movies);
+   const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies, loading, error } = useSelector((store) => store?.movies);
+   const { airingTodayTv, onTheAirTv, popularTv, topRatedTv, tvLoading, tvError } = useSelector((store) => store?.tvList);
 
    return (
       <div className="py-8 w-[95%] mx-auto">
@@ -10,22 +11,42 @@ const SecondaryContainer = () => {
             <MovieCarouselList
                title="Now Playing"
                moviesData={nowPlayingMovies}
-               isLoading={!nowPlayingMovies || nowPlayingMovies?.length === 0}
+               isLoading={loading}
             />
             <MovieCarouselList
                title="Top Rated"
                moviesData={topRatedMovies}
-               isLoading={!topRatedMovies || topRatedMovies?.length === 0}
+               isLoading={loading}
             />
             <MovieCarouselList
                title="Popular Movies"
                moviesData={popularMovies}
-               isLoading={!popularMovies || popularMovies?.length === 0}
+               isLoading={loading}
             />
             <MovieCarouselList
                title="Upcoming"
                moviesData={upcomingMovies}
-               isLoading={!upcomingMovies || upcomingMovies?.length === 0}
+               isLoading={loading}
+            />
+            <MovieCarouselList
+               title="Airing Today TV"
+               moviesData={airingTodayTv}
+               isLoading={loading}
+            />
+            <MovieCarouselList
+               title="Top Rated TV"
+               moviesData={topRatedTv}
+               isLoading={loading}
+            />
+            <MovieCarouselList
+               title="Popular TV"
+               moviesData={popularTv}
+               isLoading={loading}
+            />
+            <MovieCarouselList
+               title="On The Air"
+               moviesData={onTheAirTv}
+               isLoading={loading}
             />
          </div>
       </div>

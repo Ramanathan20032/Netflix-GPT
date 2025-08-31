@@ -10,6 +10,7 @@ import SecondaryContainer from './SecondaryContainer'
 
 // ! thunks
 import { moviesListThunk } from '../store/thunks/moviesListThunk'
+import { tvListThunk } from '../store/thunks/tvListThunk'
 
 // ! constants
 import { IMAGE_BASE_URL } from '../utils/constants'
@@ -17,13 +18,18 @@ import { IMAGE_BASE_URL } from '../utils/constants'
 
 const Browse = () => {
   const dispatch = useDispatch();
-  const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies, loading, error } = useSelector((store) => store.movies);
+  const { loading, error } = useSelector((store) => store.movies);
+  const { tvLoading, tvError } = useSelector((store) => store.tvList);
 
   useEffect(() => {
     dispatch(moviesListThunk('now_playing'));
     dispatch(moviesListThunk('popular'));
     dispatch(moviesListThunk('top_rated'));
     dispatch(moviesListThunk('upcoming'));
+    dispatch(tvListThunk('airing_today'));
+    dispatch(tvListThunk('on_the_air'));
+    dispatch(tvListThunk('popular'));
+    dispatch(tvListThunk('top_rated'));
   }, [dispatch]);
 
   return (

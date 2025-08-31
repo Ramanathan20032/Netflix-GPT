@@ -1,7 +1,6 @@
 import { MOVIES_LISTING_API_OPTIONS } from '../../utils/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-
 const categoryMapping = {
     'now_playing': 'nowPlayingMovies',
     'popular': 'popularMovies',
