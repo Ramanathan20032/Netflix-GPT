@@ -5,6 +5,7 @@ import tvListReducer from './slices/tvListSlice'
 import moviesDetailReducer from './slices/moviesDetailSlice'
 import moviesSuggestionReducer from './slices/moviesSuggestionSlice'
 import tvDetailReducer from './slices/tvDetailSlice'
+import genereListReducer from './slices/genereListSlice'
 
 const appStore = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ const appStore = configureStore({
         details: moviesDetailReducer,
         tvDetail: tvDetailReducer,
         suggestions: moviesSuggestionReducer,
+        genereList: genereListReducer,
     }
 })
 

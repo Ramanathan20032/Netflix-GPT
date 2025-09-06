@@ -27,7 +27,9 @@
 TMDB API Call Implementation
 
 - Registered on TMDB and obtained the API key.
-- Created a Redux slice for 'api/movies/nowPlaying'. (Movies Lists)
+- Created a Redux slice for 'api/movies/nowPlaying'. (Movies Lists, TV Series List)
+- (Movies Lists) - nowPlaying, popular, top rated, upcoming, 
+- (TV Series Lists) - nowPlaying, popular, top rated, upcoming, Airing today TV, Popular TV, Top Rated, On the Air
 - Implemented an async thunk as middleware to fetch data from the API and synchronize it with the Redux state.
 - updated store with movies Data [nowPlaying, popular, top rated, upcoming]
 - maintcontainer for Banner [spotlight Movie with video and details]
@@ -35,6 +37,14 @@ TMDB API Call Implementation
 - Make an API call for playing video on banner and store it in redux
 - embedded the youtube with the corresponding key
 
-- Integrated details API to get the info of the movie with dynamic movieID
+- Integrated details API to get the info of the Movie || TV with dynamic movieID
+- directed to the corresponding details page of the Movie and Tv
+- with in the details page, handle the ui with available data
+- routed the cast and crew data rendered from the available data from the details api
+- routed the recommendation and similiar movies with the corresponding movies || tv series with lazy loading
+
+- Categories Listing for Movie && TV from genere API
+
+
 
 

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import MovieCarouselList from "./MovieCarouselList";
+import GenreListing from "./GenereListing";
 
 const SecondaryContainer = () => {
    const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies, loading, error } = useSelector((store) => store?.movies);
@@ -54,6 +55,14 @@ const SecondaryContainer = () => {
                title="On The Air"
                moviesData={onTheAirTv}
                isLoading={tvLoading}
+               mediaType="tv"
+            />
+            <GenreListing
+               title="Movie Categories"
+               mediaType="movie"
+            />
+            <GenreListing
+               title="TV Categories"
                mediaType="tv"
             />
          </div>

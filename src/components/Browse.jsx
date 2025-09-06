@@ -11,6 +11,7 @@ import SecondaryContainer from './SecondaryContainer'
 // ! thunks
 import { moviesListThunk } from '../store/thunks/moviesListThunk'
 import { tvListThunk } from '../store/thunks/tvListThunk'
+import { genereListThunk } from '../store/thunks/genereListThunk'
 
 // ! constants
 import { IMAGE_BASE_URL } from '../utils/constants'
@@ -20,14 +21,20 @@ const Browse = () => {
   const dispatch = useDispatch();
   const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies, loading, error } = useSelector((store) => store.movies);
   const { airingTodayTv, onTheAirTv, popularTv, topRatedTv, tvLoading, tvError } = useSelector((store) => store.tvList);
+  const { genereListLoading, genereListError } = useSelector((store) => store.genereList);
 
   // Combined loading and error states
-  const isLoading = loading || tvLoading;
-  const hasError = error || tvError;
+  const isLoading = loading || tvLoading || genereListLoading;
+  const hasError = error || tvError || genereListError;
 
   const isDataLoaded = nowPlayingMovies.length !== 0 && popularMovies.length !== 0
     && topRatedMovies.length !== 0 && upcomingMovies.length !== 0 && airingTodayTv.length !== 0
-    && onTheAirTv.length !== 0 && popularTv.length !== 0 && topRatedTv.length !== 0;
+    && onTheAirTv.length !== 0 && popularTv.length !== 0 && topRatedTv.length !== 0 && genereListLoading;
+
+  useEffect(() => {
+    dispatch(genereListThunk({ mediaType: 'movie' }));
+    dispatch(genereListThunk({ mediaType: 'tv' }));
+  }, [dispatch]);
 
   useEffect(() => {
     if (isDataLoaded) {
