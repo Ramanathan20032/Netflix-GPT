@@ -18,10 +18,21 @@ import { IMAGE_BASE_URL } from '../utils/constants'
 
 const Browse = () => {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((store) => store.movies);
-  const { tvLoading, tvError } = useSelector((store) => store.tvList);
+  const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies, loading, error } = useSelector((store) => store.movies);
+  const { airingTodayTv, onTheAirTv, popularTv, topRatedTv, tvLoading, tvError } = useSelector((store) => store.tvList);
+
+  // Combined loading and error states
+  const isLoading = loading || tvLoading;
+  const hasError = error || tvError;
+
+  const isDataLoaded = nowPlayingMovies.length !== 0 && popularMovies.length !== 0
+    && topRatedMovies.length !== 0 && upcomingMovies.length !== 0 && airingTodayTv.length !== 0
+    && onTheAirTv.length !== 0 && popularTv.length !== 0 && topRatedTv.length !== 0;
 
   useEffect(() => {
+    if (isDataLoaded) {
+      return;
+    }
     dispatch(moviesListThunk('now_playing'));
     dispatch(moviesListThunk('popular'));
     dispatch(moviesListThunk('top_rated'));
@@ -30,21 +41,21 @@ const Browse = () => {
     dispatch(tvListThunk('on_the_air'));
     dispatch(tvListThunk('popular'));
     dispatch(tvListThunk('top_rated'));
-  }, [dispatch]);
+  }, [dispatch, isDataLoaded]);
 
   return (
     <div className="relative w-full h-screen bg-black">
       <Header />
-      {loading ? (
+      {isLoading ? (
         <div className='w-full h-screen flex items-center justify-center'>
           <LoadingSpinner />
         </div>
-      ) : error ? (
+      ) : hasError ? (
         <Error />
       ) : (
         <>
           <MainContainer />
-          <SecondaryContainer/>
+          <SecondaryContainer />
         </>
       )}
     </div>
