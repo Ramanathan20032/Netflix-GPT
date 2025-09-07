@@ -22,6 +22,8 @@ const Browse = () => {
   const { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies, loading, error } = useSelector((store) => store.movies);
   const { airingTodayTv, onTheAirTv, popularTv, topRatedTv, tvLoading, tvError } = useSelector((store) => store.tvList);
   const { genereListLoading, genereListError } = useSelector((store) => store.genereList);
+  const { movieGenereList } = useSelector((store) => store.genereList.movie);
+  const { tvGenereList } = useSelector((store) => store.genereList.tv);
 
   // Combined loading and error states
   const isLoading = loading || tvLoading || genereListLoading;
@@ -29,9 +31,14 @@ const Browse = () => {
 
   const isDataLoaded = nowPlayingMovies.length !== 0 && popularMovies.length !== 0
     && topRatedMovies.length !== 0 && upcomingMovies.length !== 0 && airingTodayTv.length !== 0
-    && onTheAirTv.length !== 0 && popularTv.length !== 0 && topRatedTv.length !== 0 && genereListLoading;
+    && onTheAirTv.length !== 0 && popularTv.length !== 0 && topRatedTv.length !== 0;
+
+  const isGenereListLoaded = movieGenereList.length !== 0 || tvGenereList.length !== 0;
 
   useEffect(() => {
+    if (isGenereListLoaded) {
+      return;
+    }
     dispatch(genereListThunk({ mediaType: 'movie' }));
     dispatch(genereListThunk({ mediaType: 'tv' }));
   }, [dispatch]);

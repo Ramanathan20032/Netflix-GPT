@@ -17,7 +17,12 @@ const MainContainer = () => {
     const { popularMovies } = useSelector((store) => store?.movies);
     const spotLightMovie = popularMovies?.[0];
 
+    const isSpotLightMovieLoaded = spotLightMovie !== null;
+
     useEffect(() => {
+        if (isSpotLightMovieLoaded) {
+            return;
+        }
         dispatch(movieTeaserThunk(spotLightMovie?.id));
     }, [dispatch, spotLightMovie?.id]);
 

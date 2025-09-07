@@ -14,48 +14,64 @@ const SecondaryContainer = () => {
                moviesData={nowPlayingMovies}
                isLoading={loading}
                mediaType="movie"
+               type="category"
+               endPoint="now_playing"
             />
             <MovieCarouselList
                title="Top Rated"
                moviesData={topRatedMovies}
                isLoading={loading}
                mediaType="movie"
+               type="category"
+               endPoint="top_rated"
             />
             <MovieCarouselList
                title="Popular Movies"
                moviesData={popularMovies}
                isLoading={loading}
                mediaType="movie"
+               type="category"
+               endPoint="popular"
             />
             <MovieCarouselList
                title="Upcoming"
                moviesData={upcomingMovies}
                isLoading={loading}
                mediaType="movie"
+               type="category"
+               endPoint="upcoming"
             />
             <MovieCarouselList
                title="Airing Today TV"
                moviesData={airingTodayTv}
                isLoading={tvLoading}
                mediaType="tv"
+               type="category"
+               endPoint="airing_today"
             />
             <MovieCarouselList
                title="Popular TV"
                moviesData={popularTv}
                isLoading={tvLoading}
                mediaType="tv"
+               type="category"
+               endPoint="popular"
             />
             <MovieCarouselList
                title="Top Rated TV"
                moviesData={topRatedTv}
                isLoading={tvLoading}
                mediaType="tv"
+               type="category"
+               endPoint="top_rated"
             />
             <MovieCarouselList
                title="On The Air"
                moviesData={onTheAirTv}
                isLoading={tvLoading}
                mediaType="tv"
+               type="category"
+               endPoint="on_the_air"
             />
             <GenreListing
                title="Movie Categories"

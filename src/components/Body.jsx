@@ -7,6 +7,8 @@ import Error from './Error'
 import MovieInfo from './MovieInfo';
 import MovieList from './MovieList';
 import CastCrewList from './CastCrewList';
+import GenereMediaList from './GenereMediaList';
+import CategoryMediaList from './CategoryMediaList';
 
 
 const Body = () => {
@@ -31,6 +33,14 @@ const Body = () => {
     {
       path: "/:mediaType/:movieId/suggestions/:type",
       element: <MovieList />
+    },
+    {
+      path: "/:mediaType/genere/:genereId",
+      element: <GenereMediaList />
+    },
+    {
+      path: "/:mediaType/:type/:endPoint",
+      element: <CategoryMediaList />
     },
     {
       path: "*",

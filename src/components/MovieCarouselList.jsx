@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import MovieCarouselCard from "./MovieCarouselCard";
 import ShimmerMovieCard from "./ui/ShimmerMovieCard";
 
-const MovieCarouselList = ({ title, moviesData, isLoading = false, type, movieId, mediaType }) => {
+const MovieCarouselList = ({ title, moviesData, isLoading = false, type, movieId, mediaType, endPoint }) => {
     const navigate = useNavigate();
     const hasData = moviesData && moviesData.length > 0
 
@@ -11,7 +11,9 @@ const MovieCarouselList = ({ title, moviesData, isLoading = false, type, movieId
             navigate(`/${mediaType}/${movieId}/suggestions/${type}`);
         } else if (type === "cast" || type === "crew") {
             navigate(`/${mediaType}/${movieId}/people/${type}`);
-        } 
+        } else if (type === "category") {
+            navigate(`/${mediaType}/${type}/${endPoint}`);
+        }
     }
 
     return (
