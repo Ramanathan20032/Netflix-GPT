@@ -30,9 +30,20 @@ const mediaCategorySlice = createSlice({
                 state.mediaCategoryError = null;
             })
             .addCase(mediaCategoryThunk.fulfilled, (state, action) => {
-                state.mediaCategoryData = action.payload.mediaCategory;
                 state.mediaCategoryLoading = false;
                 state.mediaCategoryError = null;
+
+                const { mediaType, mediaCategory } = action.payload;
+                const { results, total_pages, page } = mediaCategory;
+
+                if(page === 1) {
+                    state.mediaCategoryData.results = results;
+                } else {
+                    state.mediaCategoryData.results = [...state.mediaCategoryData.results, ...results]
+                }
+
+                state.mediaCategoryData.total_pages = total_pages;
+                state.mediaCategoryData.page = page;
             })
             .addCase(mediaCategoryThunk.rejected, (state, action) => {
                 state.mediaCategoryLoading = false;

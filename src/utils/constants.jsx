@@ -8,7 +8,7 @@ export const MOVIES_LISTING_API_OPTIONS = {
     accept: 'application/json',
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZTBkY2QxMTMxZDY4YTYzODc4NzQyYzc3ZWZmZTI4YyIsIm5iZiI6MTc1NDkwNDk0MS44MzM5OTk5LCJzdWIiOiI2ODk5Yjk2ZGI3N2E2ZmY0OTM1ZDEyZjAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.P_KRZMd9AIulqHnn6LKV0u7or_BXc81C6LF3aS3kfSE'
   }
-}; 
+};
 
 
 // ? Format Runtime
@@ -24,9 +24,9 @@ export const formatDate = (dateString) => {
   if (!dateString) return '';
   const date = new Date(dateString);
   return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   });
 };
 
@@ -36,4 +36,11 @@ export const getRatingColor = (rating) => {
   if (rating >= 7) return 'text-green-400';
   if (rating >= 5) return 'text-yellow-400';
   return 'text-red-400';
+};
+
+// ? Get Genre Name from ID
+export const getGenreName = (genreId, genreList) => {
+  if (!genreId || !genreList || !Array.isArray(genreList)) return 'Unknown Genre';
+  const genre = genreList.find(g => g.id === parseInt(genreId));
+  return genre ? genre.name : 'Unknown Genre';
 };

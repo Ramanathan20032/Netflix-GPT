@@ -13,7 +13,7 @@ export const mediaCategoryThunk = createAsyncThunk(
             }
             const data = await response.json();
             console.log(`MEDIA CATEGORY DATA SUCCESSFULLY FETCHED ${endPoint}`, data);
-            return { mediaType, mediaCategory: data };
+            return { mediaType, mediaCategory: data, page };
         }
         catch (error) {
             console.error('Error in mediaCategoryThunk:', error.message);

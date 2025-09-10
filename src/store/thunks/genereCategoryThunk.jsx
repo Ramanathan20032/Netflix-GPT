@@ -7,14 +7,14 @@ export const genereCategoryThunk = createAsyncThunk(
         try {
             const GENERE_CATEGORY_LIST_API = `https://api.themoviedb.org/3/discover/${mediaType}?language=en-IN&with_genres=${genereId}&page=${page}`;
             const response = await fetch(GENERE_CATEGORY_LIST_API, MOVIES_LISTING_API_OPTIONS);
-            
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
             console.log("GENERE CATEGORY LIST DATA SUCCESSFULLY FETCHED");
             console.log(`GENERE CATEGORY LIST DATA: ${mediaType}`, data);
-            return { mediaType, genereCategoryList: data };
+            return { mediaType, genereCategoryList: data, page };
         }
         catch (error) {
             return rejectWithValue(error.message);

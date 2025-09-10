@@ -31,8 +31,20 @@ const genereCategorySlice = createSlice({
             })
             .addCase(genereCategoryThunk.fulfilled, (state, action) => {
                 state.genereCategoryListLoading = false;
-                state.genereCategoryData = action.payload.genereCategoryList;
                 state.genereCategoryListError = null;
+
+                const { mediaType, genereCategoryList } = action.payload;
+                const { results, total_pages, page } = genereCategoryList;
+
+                // If it's page 1, replace results; otherwise append
+                if (page === 1) {
+                    state.genereCategoryData.results = results;
+                } else {
+                    state.genereCategoryData.results = [...state.genereCategoryData.results, ...results];
+                }
+
+                state.genereCategoryData.total_pages = total_pages;
+                state.genereCategoryData.page = page;
             })
             .addCase(genereCategoryThunk.rejected, (state, action) => {
                 state.genereCategoryListLoading = false;
