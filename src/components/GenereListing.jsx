@@ -8,7 +8,7 @@ const GenreListing = ({ title, mediaType, type }) => {
     const { movieGenereList } = useSelector((store) => store.genereList.movie);
     const { tvGenereList } = useSelector((store) => store.genereList.tv);
     const mediaGenereData = mediaType === "movie" ? movieGenereList : tvGenereList;
-    console.log(mediaGenereData);
+    // console.log(mediaGenereData);
 
     const handleNavigate = (genereId) => {
         navigate(`/${mediaType}/genere/${genereId}`)      

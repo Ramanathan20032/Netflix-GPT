@@ -87,11 +87,15 @@ const CastCrewList = () => {
                     <InvalidIdError mediaType={mediaType} movieId={movieId} />
                 ) : people && people.length > 0 ? (
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-4 md:gap-5">
-                        {people.map((person) => (
-                            <div key={person.id} className="aspect-[2/3] w-full">
-                                <MovieCarouselCard movie={person} mediaType={mediaType} />
-                            </div>
-                        ))}
+                        {people.map((person, index) => {
+                            // Create unique key for cast/crew members
+                            const uniqueKey = `${person.id}-${index}-${person.credit_id || person.character || person.job || ''}`;
+                            return (
+                                <div key={uniqueKey} className="aspect-[2/3] w-full">
+                                    <MovieCarouselCard movie={person} mediaType={mediaType} />
+                                </div>
+                            );
+                        })}
                     </div>
                 ) : (
                     // No results

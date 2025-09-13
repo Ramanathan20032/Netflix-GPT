@@ -57,11 +57,15 @@ const MovieCarouselList = ({ title, moviesData, isLoading = false, type, movieId
                 ) : (
                     // ? Movies list
                     <div className="flex overflow-x-scroll scrollbar-hide gap-5 px-1 py-3">
-                        {moviesData.map((movie) => (
-                            <div key={movie?.id} className="flex-shrink-0">
-                                <MovieCarouselCard movie={movie} mediaType={mediaType} />
-                            </div>
-                        ))}
+                        {moviesData.map((movie, index) => {
+                            // Create unique key by combining id with index and additional unique identifiers
+                            const uniqueKey = `${movie?.id || 'unknown'}-${index}-${movie?.credit_id || movie?.character || movie?.job || ''}`;
+                            return (
+                                <div key={uniqueKey} className="flex-shrink-0">
+                                    <MovieCarouselCard movie={movie} mediaType={mediaType} />
+                                </div>
+                            );
+                        })}
                     </div>
                 )}
             </div>

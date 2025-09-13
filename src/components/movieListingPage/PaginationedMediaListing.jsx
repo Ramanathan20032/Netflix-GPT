@@ -36,9 +36,13 @@ const PaginationedMediaListing = ({ mediaType, genereId, genreName, endPoint, ty
                     // Results with infinite scroll
                     <>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4 md:gap-5">
-                            {results.map((movie) => (
-                                <MovieCarouselCard key={movie.id} movie={movie} mediaType={mediaType} />
-                            ))}
+                            {results.map((movie, index) => {
+                                // Create unique key for movies/TV shows
+                                const uniqueKey = `${movie.id}-${index}-${movie.media_type || mediaType || ''}`;
+                                return (
+                                    <MovieCarouselCard key={uniqueKey} movie={movie} mediaType={mediaType} />
+                                );
+                            })}
                         </div>
 
                         {/* Infinite scroll loader - positioned outside the grid */}

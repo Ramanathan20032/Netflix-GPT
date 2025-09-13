@@ -8,6 +8,7 @@ import tvDetailReducer from './slices/tvDetailSlice'
 import genereListReducer from './slices/genereListSlice'
 import genereCategoryListReducer from './slices/genereCategorySlice'
 import mediaCategorySlice from "./slices/mediaCategorySlice";
+import peopleDetailReducer from "./slices/peopleDetailSlice";
 
 const appStore = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ const appStore = configureStore({
         genereList: genereListReducer,
         genereCategoryList: genereCategoryListReducer,
         mediaCategory: mediaCategorySlice,
+        PeopleDetail: peopleDetailReducer,
     }
 })
 

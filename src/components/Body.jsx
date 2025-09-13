@@ -8,6 +8,7 @@ import MovieInfo from './MovieInfo';
 import MovieSuggestionsList from './movieListingPage/MovieSuggestionsList';
 import CastCrewList from './movieListingPage/CastCrewList';
 import MediaList from './movieListingPage/MediaList';
+import PeopleInfo from './PeopleInfo';
 
 
 const Body = () => {
@@ -24,6 +25,10 @@ const Body = () => {
     {
       path: "/:mediaType/:movieId",
       element: <MovieInfo />
+    },
+    {
+      path: "/people/:personId",
+      element: <PeopleInfo />
     },
     {
       path: "/:mediaType/:movieId/people/:type",
