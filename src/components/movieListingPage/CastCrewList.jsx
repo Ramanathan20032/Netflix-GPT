@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 // Store Thunks
-import { moviesDetailThunk } from "../store/thunks/moviesDetailThunk";
-import { tvDetailThunk } from "../store/thunks/tvDetailThunk";
+import { moviesDetailThunk } from "../../store/thunks/moviesDetailThunk";
+import { tvDetailThunk } from "../../store/thunks/tvDetailThunk";
 
 // Hooks
-import { useIdValidation } from "../hooks/useIdValidation";
+import { useIdValidation } from "../../hooks/useIdValidation";
 
 // Components
-import Error from "./Error";
-import MovieCarouselCard from "./MovieCarouselCard";
-import LoadingSpinner from "./ui/LoadingSpinner";
-import InvalidIdError from "./ui/InvalidIdError";
+import Error from "../Error";
+import MovieCarouselCard from "../MovieCarouselCard";
+import LoadingSpinner from "../ui/LoadingSpinner";
+import InvalidIdError from "../ui/InvalidIdError";
 
 const CastCrewList = () => {
     const { mediaType, movieId, type } = useParams();

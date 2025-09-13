@@ -1,24 +1,69 @@
-import MovieCarouselCard from "./MovieCarouselCard";
-import ShimmerMovieCard from "./ui/ShimmerMovieCard";
-import InvalidIdError from "./ui/InvalidIdError";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-const PaginationedMediaListing = ({ mediaType, genereId, genreName, endPoint, type, page, total_pages, total_results, loaderRef, loading, error, results }) => {
-    console.log("MediaPaginationListing");
+// Hooks
+import { useInfiniteMovies } from "../../hooks/useInfiniteMovies";
+import { useIdValidation } from "../../hooks/useIdValidation";
+
+// Components
+import ShimmerMovieCard from "../ui/ShimmerMovieCard";
+import Error from "../Error";
+import MovieCarouselCard from "../MovieCarouselCard";
+import LoadingSpinner from "../ui/LoadingSpinner";
+import InvalidIdError from "../ui/InvalidIdError";
+
+// ! Movie Suggestions List for both recommendations and similar listings
+const MovieSuggestionsList = () => {
+    const { type, movieId, mediaType } = useParams();
+    const navigate = useNavigate();
+
+    // Use the custom hook for ID validation
+    const { isIdValid, canValidate } = useIdValidation(mediaType, movieId);
+
+    const { results, page, total_pages, loaderRef, loading, error } = useInfiniteMovies({
+        type: type,
+        mediaType: mediaType,
+        movieId: movieId
+    });
+
+    useEffect(() => {
+        // Validate mediaType
+        if (mediaType !== "movie" && mediaType !== "tv") {
+            navigate("/error");
+            return;
+        }
+
+        // Validate type parameter
+        if (type !== "recommendations" && type !== "similar") {
+            navigate("/error");
+            return;
+        }
+
+        // Check if the ID exists in current listings (only when we can validate)
+        if (canValidate && !isIdValid) {
+            console.warn(`Invalid ${mediaType} ID: ${movieId} - not found in current listings`);
+        }
+    }, [mediaType, type, navigate, movieId, isIdValid, canValidate]);
+
+    // Early return for invalid parameters
+    if (mediaType !== "movie" && mediaType !== "tv") {
+        return <Error />;
+    }
+
+    if (type !== "recommendations" && type !== "similar") {
+        return <Error />;
+    }
+
+    console.log("MovieList render:", { results, page, total_pages, loading, error });
 
     return (
         <div className="min-h-screen bg-black">
             <div className="w-full mx-auto px-7 sm:px-8 md:px-12 py-8">
                 {/* Only show header when NOT in error state */}
-                {!error &&
-                    (genereId ? (
-                        <h1 className="text-gray-100 text-base md:text-xl font-bold mb-4 md:mb-6 mt-2 md:mt-4 tracking-wider">
-                            {genreName.toUpperCase()} {mediaType?.toUpperCase()}
-                        </h1>
-                    ) : (
-                        <h1 className="text-gray-100 text-base md:text-xl font-bold mb-4 md:mb-6 mt-2 md:mt-4 tracking-wider">
-                            {endPoint.split("_").join(" ").toUpperCase()} {mediaType?.toUpperCase()}
-                        </h1>
-                    )
+                {!error && (
+                    <h1 className="text-gray-100 text-base md:text-xl font-bold mb-4 md:mb-6 mt-2 md:mt-4 tracking-wider">
+                        {type?.toUpperCase()} {mediaType?.toUpperCase()}
+                    </h1>
                 )}
 
                 {loading && page === 0 ? (
@@ -31,7 +76,7 @@ const PaginationedMediaListing = ({ mediaType, genereId, genreName, endPoint, ty
                     </div>
                 ) : error ? (
                     // Show custom error for invalid ID instead of generic Error component
-                    <InvalidIdError mediaType={mediaType} movieId={genereId} />
+                    <InvalidIdError mediaType={mediaType} movieId={movieId} />
                 ) : results && results.length > 0 ? (
                     // Results with infinite scroll
                     <>
@@ -71,7 +116,7 @@ const PaginationedMediaListing = ({ mediaType, genereId, genreName, endPoint, ty
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default PaginationedMediaListing;
+export default MovieSuggestionsList;

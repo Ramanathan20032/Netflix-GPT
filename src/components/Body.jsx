@@ -5,10 +5,9 @@ import Login from './Login'
 import Browse from './Browse'
 import Error from './Error'
 import MovieInfo from './MovieInfo';
-import MovieList from './MovieList';
-import CastCrewList from './CastCrewList';
-import GenereMediaList from './GenereMediaList';
-import CategoryMediaList from './CategoryMediaList';
+import MovieSuggestionsList from './movieListingPage/MovieSuggestionsList';
+import CastCrewList from './movieListingPage/CastCrewList';
+import MediaList from './movieListingPage/MediaList';
 
 
 const Body = () => {
@@ -32,15 +31,15 @@ const Body = () => {
     },
     {
       path: "/:mediaType/:movieId/suggestions/:type",
-      element: <MovieList />
+      element: <MovieSuggestionsList />
     },
     {
       path: "/:mediaType/genere/:genereId",
-      element: <GenereMediaList />
+      element: <MediaList />
     },
     {
       path: "/:mediaType/:type/:endPoint",
-      element: <CategoryMediaList />
+      element: <MediaList />
     },
     {
       path: "*",
