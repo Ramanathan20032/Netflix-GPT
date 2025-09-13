@@ -12,7 +12,7 @@ const PaginationedMediaListing = ({ mediaType, genereId, genreName, endPoint, ty
                 {!error &&
                     (genereId ? (
                         <h1 className="text-gray-100 text-base md:text-xl font-bold mb-4 md:mb-6 mt-2 md:mt-4 tracking-wider">
-                            {genreName.toUpperCase()} {mediaType?.toUpperCase()}
+                            {genreName ? genreName.toUpperCase() : null} {mediaType?.toUpperCase()}
                         </h1>
                     ) : (
                         <h1 className="text-gray-100 text-base md:text-xl font-bold mb-4 md:mb-6 mt-2 md:mt-4 tracking-wider">
@@ -24,9 +24,7 @@ const PaginationedMediaListing = ({ mediaType, genereId, genreName, endPoint, ty
                 {loading && page === 0 ? (
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4 md:gap-5">
                         {Array.from({ length: 20 }).map((_, index) => (
-                            <div key={index} className="flex-shrink-0">
-                                <ShimmerMovieCard />
-                            </div>
+                            <ShimmerMovieCard key={index} />
                         ))}
                     </div>
                 ) : error ? (
@@ -53,9 +51,7 @@ const PaginationedMediaListing = ({ mediaType, genereId, genreName, endPoint, ty
                                         // Show shimmer cards while loading more content
                                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4 md:gap-5">
                                             {Array.from({ length: 14 }).map((_, index) => (
-                                                <div key={`shimmer-${index}`} className="flex-shrink-0">
-                                                    <ShimmerMovieCard />
-                                                </div>
+                                                <ShimmerMovieCard key={`shimmer-${index}`} />
                                             ))}
                                         </div>
                                         // <LoadingSpinner />

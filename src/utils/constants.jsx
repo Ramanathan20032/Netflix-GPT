@@ -40,7 +40,8 @@ export const getRatingColor = (rating) => {
 
 // ? Get Genre Name from ID
 export const getGenreName = (genreId, genreList) => {
-  if (!genreId || !genreList || !Array.isArray(genreList)) return 'Unknown Genre';
+  if (!genreId) return null;
+  if (!genreList || !Array.isArray(genreList) || genreList.length === 0) return null; // Return null during loading
   const genre = genreList.find(g => g.id === parseInt(genreId));
   return genre ? genre.name : 'Unknown Genre';
 };

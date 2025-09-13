@@ -1,6 +1,6 @@
 const ShimmerMovieCard = () => {
     return (
-        <div className="relative w-48 h-72 rounded-md overflow-hidden bg-gray-800 animate-pulse">
+        <div className="relative w-full aspect-[2/3] rounded-md overflow-hidden bg-gray-800 animate-pulse">
             {/* Shimmer effect overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
 

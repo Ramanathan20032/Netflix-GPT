@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import usePaginatedFetch from "../../hooks/usePaginatedFetch";
 import { clearMediaCategory } from "../../store/slices/mediaCategorySlice";
 import { clearGenereCategoryList } from "../../store/slices/genereCategorySlice";
+import { genereListThunk } from "../../store/thunks/genereListThunk";
 import { getGenreName } from "../../utils/constants";
 import PaginationedMediaListing from "./PaginationedMediaListing";
 
@@ -21,6 +22,13 @@ const MediaList = () => {
 
     // Get genre name from ID (only for genre listings)
     const genreName = genereId ? getGenreName(genereId, mediaGenereData) : null;
+
+    // Fetch genre list data if not available (for direct page refresh)
+    useEffect(() => {
+        if (genereId && mediaGenereData.length === 0) {
+            dispatch(genereListThunk({ mediaType }));
+        }
+    }, [dispatch, mediaType, genereId, mediaGenereData.length]);
 
     useEffect(() => {
         return () => {
