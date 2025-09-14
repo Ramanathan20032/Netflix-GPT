@@ -49,7 +49,7 @@ const ProfileBanner = () => {
                             </div>
 
                             {/* Basic Info */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {details?.birthday && (
                                     <div>
                                         <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Born</h3>

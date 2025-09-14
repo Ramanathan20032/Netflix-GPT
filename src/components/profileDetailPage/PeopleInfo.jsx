@@ -3,11 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { peopleDetailThunk } from "../../store/thunks/peopleDetailThunk";
 import { clearPeopleData } from "../../store/slices/peopleDetailSlice";
-import { IMAGE_BASE_URL, formatDate } from "../../utils/constants";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import Error from "../Error";
-import noImage from "../assets/images/no-image.png";
-import MovieCarouselCard from "../MovieCarouselCard";
 import ProfileBanner from "./profileBanner";
 import MovieCarouselList from "../MovieCarouselList";
 
@@ -45,6 +42,7 @@ const PeopleInfo = () => {
             </div>
         ) : (
             <div className="min-h-screen bg-black text-white">
+                {/* Profile Banner */}
                 <ProfileBanner />
 
                 {/* Filmography Section */}
@@ -67,7 +65,6 @@ const PeopleInfo = () => {
                             {/* Cast Credits */}
                             {combineCredits?.cast && combineCredits.cast.length > 0 && (
                                 <div className="mb-12">
-                                    {/* <h3 className="text-2xl font-semibold mb-6">As Actor</h3> */}
                                     <MovieCarouselList
                                         title="As Actor"
                                         moviesData={combineCredits.cast}
@@ -81,7 +78,6 @@ const PeopleInfo = () => {
                             {/* Crew Credits */}
                             {combineCredits?.crew && combineCredits.crew.length > 0 && (
                                 <div>
-                                    {/* <h3 className="text-2xl font-semibold mb-6">As Crew</h3> */}
                                     <MovieCarouselList
                                         title="As Crew"
                                         moviesData={combineCredits.crew}

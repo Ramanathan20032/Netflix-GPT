@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import MovieCarouselCard from "./MovieCarouselCard";
 import ShimmerMovieCard from "./ui/ShimmerMovieCard";
-import MovieInfoDetailCarouselCard from "./MovieInfoDetailCarouselCard";
+import MovieInfoDetailCarouselCard from "./profileDetailPage/MovieInfoDetailCarouselCard";
 
 const MovieCarouselList = ({ title, moviesData, isLoading = false, type, movieId, mediaType, endPoint }) => {
     const navigate = useNavigate();
