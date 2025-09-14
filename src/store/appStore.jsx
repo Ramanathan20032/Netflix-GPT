@@ -9,6 +9,7 @@ import genereListReducer from './slices/genereListSlice'
 import genereCategoryListReducer from './slices/genereCategorySlice'
 import mediaCategorySlice from "./slices/mediaCategorySlice";
 import peopleDetailReducer from "./slices/peopleDetailSlice";
+import tvSeriesSeasonReducer from "./slices/tvSeriesSeasonSlice";
 
 const appStore = configureStore({
     reducer: {
@@ -22,6 +23,7 @@ const appStore = configureStore({
         genereCategoryList: genereCategoryListReducer,
         mediaCategory: mediaCategorySlice,
         PeopleDetail: peopleDetailReducer,
+        tvSeriesSeason: tvSeriesSeasonReducer,
     }
 })
 

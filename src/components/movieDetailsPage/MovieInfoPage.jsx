@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // Components
 import MovieInfoBanner from "./MovieInfoBanner";
@@ -9,6 +9,8 @@ import MovieCarouselList from "../MovieCarouselList";
 import MovieProductionInfo from "./MovieProductionInfo";
 import MovieInfoLanguage from "./MovieInfoLanguage";
 import MovieInfoReviews from "./MovieInfoReviews";
+import MovieInfoSeasonsAndEpisodes from "./MovieInfoSeasonsAndEpisodes";
+
 
 const MovieInfoPage = ({ mediaType }) => {
     const {
@@ -51,7 +53,6 @@ const MovieInfoPage = ({ mediaType }) => {
     const details = mediaType === "movie" ? movieDetails : tvDetails;
     const credits = mediaType === "movie" ? movieCredits : tvCredits;
     const recommendations = mediaType === "movie" ? movieRecommendations : tvRecommendations;
-    const reviews = mediaType === "movie" ? movieReviews : tvReviews;
     const similar = mediaType === "movie" ? movieSimilar : tvSimilar;
     const videos = mediaType === "movie" ? movieVideos : tvVideos;
     const isLoading = mediaType === "movie" ? loading : tvLoading;
@@ -77,6 +78,11 @@ const MovieInfoPage = ({ mediaType }) => {
 
                 {/* Spoken Languages */}
                 <MovieInfoLanguage title="Languages" mediaType={mediaType} />
+
+                {/* Seasons and Episodes */}
+                {mediaType === "tv" && (
+                    <MovieInfoSeasonsAndEpisodes title="Seasons and Episodes" mediaType={mediaType} />
+                )}
 
                 {/* Cast */}
                 <MovieCarouselList

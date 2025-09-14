@@ -11,7 +11,7 @@ const MovieInfoOverView = ({ title, mediaType }) => {
             {details?.overview && (
                 <div className="mb-11">
                     <h2 className="text-2xl font-bold text-white mb-2">{title}</h2>
-                    <p className="text-gray-300 text-lg font-medium leading-relaxed max-w-8xl">
+                    <p className="text-gray-300 text-md md:text-lg font-medium leading-relaxed max-w-8xl">
                         {details?.overview}
                     </p>
                 </div>

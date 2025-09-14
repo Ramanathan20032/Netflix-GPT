@@ -64,7 +64,7 @@ const MovieInfoDetail = ({ title, mediaType }) => {
 
                 {/* Movie Details */}
                 <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
+                    <h2 className="text-2xl font-bold text-white mb-4">{mediaType === "movie" ? "Movie Details" : "TV Show Details"}</h2>
 
                     <div className="space-y-4">
                         {getTitle() && (
@@ -81,12 +81,19 @@ const MovieInfoDetail = ({ title, mediaType }) => {
                             </div>
                         )}
 
-                        {
+                        {mediaType === "movie" && (
                             <div>
                                 <span className="text-gray-400 font-medium">Runtime:</span>
                                 <span className="text-white ml-2">{formatRuntime(getRuntime()) || 'N/A'}</span>
                             </div>
-                        }
+                        )}
+
+                        {mediaType === "tv" && (
+                            <div>
+                                <span className="text-gray-400 font-medium">Number of Seasons:</span>
+                                <span className="text-white ml-2">{tvDetails?.number_of_seasons}</span>
+                            </div>
+                        )}
 
                         {details?.status && (
                             <div>
