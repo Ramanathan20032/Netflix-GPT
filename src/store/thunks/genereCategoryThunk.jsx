@@ -13,7 +13,7 @@ export const genereCategoryThunk = createAsyncThunk(
             }
             const data = await response.json();
             console.log("GENERE CATEGORY LIST DATA SUCCESSFULLY FETCHED");
-            console.log(`GENERE CATEGORY LIST DATA: ${mediaType}`, data);
+            console.log(`GENERE CATEGORY LIST DATA: ${mediaType}`);
             return { mediaType, genereCategoryList: data, page };
         }
         catch (error) {

@@ -13,7 +13,7 @@ export const movieSuggestionThunk = createAsyncThunk(
             }
 
             const data = await response.json();
-            console.log("MOVIE SUGGESTION DATA SUCCESSFULLY FETCHED", data);
+            console.log("MOVIE SUGGESTION DATA SUCCESSFULLY FETCHED");
 
             return {
                 type,

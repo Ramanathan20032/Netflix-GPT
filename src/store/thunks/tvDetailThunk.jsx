@@ -57,7 +57,7 @@ export const tvDetailThunk = createAsyncThunk(
                 videos,
             };
 
-            console.log("ALL TV DATA SUCCESSFULLY FETCHED:", tvData);
+            console.log("ALL TV DATA SUCCESSFULLY FETCHED");
             return tvData;
         }
         catch (error) {

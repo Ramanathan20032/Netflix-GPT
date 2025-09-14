@@ -18,7 +18,6 @@ const MovieInfo = () => {
     const dispatch = useDispatch();
     const { loading, error } = useSelector((store) => store?.details);
     const { tvLoading, tvError } = useSelector((store) => store?.tvDetail);
-    console.log(`MovieDetails: ${movieId}`);
 
     useEffect(() => {
         // Fetch movie details when component mounts

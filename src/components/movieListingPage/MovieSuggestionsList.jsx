@@ -54,7 +54,7 @@ const MovieSuggestionsList = () => {
         return <Error />;
     }
 
-    console.log("MovieList render:", { results, page, total_pages, loading, error });
+    // console.log("MovieList render:", { results, page, total_pages, loading, error });
 
     return (
         <div className="min-h-screen bg-black">
