@@ -8,7 +8,7 @@ import MovieInfo from './MovieInfo';
 import MovieSuggestionsList from './movieListingPage/MovieSuggestionsList';
 import CastCrewList from './movieListingPage/CastCrewList';
 import MediaList from './movieListingPage/MediaList';
-import PeopleInfo from './PeopleInfo';
+import PeopleInfo from './profileDetailPage/PeopleInfo';
 
 
 const Body = () => {
