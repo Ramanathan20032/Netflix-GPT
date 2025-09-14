@@ -13,7 +13,7 @@ const PeopleInfo = () => {
     const { personId } = useParams();
     const dispatch = useDispatch();
     const { peopleData, peopleDetailLoading, peopleDetailError } = useSelector((store) => store?.PeopleDetail);
-    const { details, externalIds, combineCredits } = peopleData;
+    const { details, combineCredits } = peopleData;
     console.log("People Data: ", peopleData);
 
     useEffect(() => {

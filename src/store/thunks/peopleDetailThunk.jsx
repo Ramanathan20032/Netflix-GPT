@@ -29,18 +29,10 @@ export const peopleDetailThunk = createAsyncThunk(
                 details,
                 externalIds,
                 combineCredits,
-                moviesCredits,
-                tvCredits,
-                images,
-                taggedImages
             ] = await Promise.all([
                 fetchPeopleData('', personId),
                 fetchPeopleData('/external_ids', personId),
                 fetchPeopleData('/combined_credits', personId),
-                fetchPeopleData('/movie_credits', personId),
-                fetchPeopleData('/tv_credits', personId),
-                fetchPeopleData('/images', personId),
-                fetchPeopleData('/tagged_images', personId),
             ]);
 
             // Return structured data
@@ -49,10 +41,6 @@ export const peopleDetailThunk = createAsyncThunk(
                 details,
                 externalIds,
                 combineCredits,
-                moviesCredits,
-                tvCredits,
-                images,
-                taggedImages,
             };
 
             console.log("PEOPLE DATA SUCCESSFULLY FETCHED:", peopleData);
