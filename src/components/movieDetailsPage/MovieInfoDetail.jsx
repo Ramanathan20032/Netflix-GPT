@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 import { IMAGE_BASE_URL, formatRuntime, formatDate, getRatingColor } from "../../utils/constants";
 import noImage from "../../assets/images/no-image.png";
+import { Link } from "react-router-dom";
 
-const MovieInfoDetail = ({ title, mediaType }) => {
+const MovieInfoDetail = ({ mediaType }) => {
     const { movieDetails } = useSelector((store) => store?.details);
     const { tvDetails } = useSelector((store) => store?.tvDetail);
     const details = mediaType === "movie" ? movieDetails : tvDetails;
@@ -130,12 +131,13 @@ const MovieInfoDetail = ({ title, mediaType }) => {
                                 <span className="text-gray-400 font-medium">Genres:</span>
                                 <div className="flex flex-wrap gap-2 mt-2">
                                     {details?.genres.map((genre, index) => (
-                                        <span
+                                        <Link
                                             key={genre.id || index}
-                                            className="bg-white/15 text-white px-3 py-1.5 rounded-full text-sm font-medium backdrop-blur-sm"
+                                            to={`/${mediaType}/genere/${genre.id}`}
+                                            className="bg-white/15 hover:bg-white/20 hover:bg-opacity-50 transition-all duration-300 cursor-pointer text-white px-3 py-1.5 rounded-full text-sm font-medium backdrop-blur-sm"
                                         >
                                             {genre.name}
-                                        </span>
+                                        </Link>
                                     ))}
                                 </div>
                             </div>

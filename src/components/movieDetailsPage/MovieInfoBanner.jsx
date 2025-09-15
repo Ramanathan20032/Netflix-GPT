@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { IMAGE_BASE_URL, formatRuntime, formatDate, getRatingColor } from "../../utils/constants";
 import StarRating from "../ui/StarRating";
+import { Link } from "react-router-dom";
 
 const MovieInfoBannerPage = ({ mediaType }) => {
     const { movieDetails } = useSelector((store) => store?.details);
@@ -134,12 +135,13 @@ const MovieInfoBannerPage = ({ mediaType }) => {
                         {details?.genres && details?.genres.length > 0 && (
                             <div className="flex flex-wrap gap-2 mb-5.5">
                                 {details?.genres.map((genre, index) => (
-                                    <span
+                                    <Link
                                         key={genre.id || index}
-                                        className="bg-white/15 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm"
+                                        to = {`/${mediaType}/genere/${genre.id}`}
+                                        className="bg-white/15 hover:bg-white/20 hover:bg-opacity-50 transition-all duration-300 cursor-pointer text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm"
                                     >
                                         {`${genre.name}`}
-                                    </span>
+                                    </Link>
                                 ))}
                             </div>
                         )}
