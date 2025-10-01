@@ -89,6 +89,9 @@ const Login = () => {
         .catch((error) => {
           // ? console.log('User Sign-in Error', error.code, error.message);
           setLoginError(`${error.code} - ${error.message}`);
+          // Clear only password on failed sign-in
+          if (passwordRef.current) passwordRef.current.value = '';
+          setPasswordToggle(false);
         });
     } else {
       // * Sign up logic with Firebase Auth
@@ -148,17 +151,17 @@ const Login = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/85 to-transparent z-10" />
 
       {/* Form Over Banner */}
-      <form onSubmit={(e) => e.preventDefault()} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/60 px-8 py-16 rounded-lg z-20 text-white flex flex-col items-center w-1/3">
-        <h1 className="w-full text-3xl font-semibold text-start px-3.5 mb-4">{isSignin ? 'Sign In' : 'Sign Up'}</h1>
+      <form onSubmit={(e) => e.preventDefault()} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/75 md:bg-black/60 px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:py-14 rounded-lg z-20 text-white flex flex-col items-center w-[92%] sm:w-[80%] md:w-[60%] lg:w-[42%] xl:w-1/3 ">
+        <h1 className="w-full text-2xl sm:text-3xl font-semibold text-start px-1.5 sm:px-3.5 mb-4">{isSignin ? 'Sign In' : 'Sign Up'}</h1>
 
-        <div className='w-[93%]'>
+        <div className='w-full'>
           {!isSignin &&
             <div className="relative">
               <input
                 ref={fullNameRef}
                 type="text"
                 placeholder="Full Name"
-                className="px-3 py-3 mt-3 mb-0 w-[100%] border-none focus:outline-none focus:bg-[#393E46]/100 bg-[#393E46]/80 text-white rounded-lg text-lg tracking-wider font-medium"
+                className="px-3 py-3 mt-3 mb-0 w-full border-none focus:outline-none focus:bg-[#393E46]/100 bg-[#393E46]/80 text-white rounded-lg text-base md:text-lg tracking-wider font-medium"
                 onChange={() => handleInputChange('fullName')}
               />
               <p className='text-red-400 text-sm px-1 min-h-5'>{fullNameError}</p>
@@ -170,7 +173,7 @@ const Login = () => {
               ref={emailRef}
               type="text"
               placeholder="Email Address"
-              className="px-3 py-3 mt-3 mb-1 w-[100%] border-none focus:outline-none focus:bg-[#393E46]/100 bg-[#393E46]/80 text-white rounded-lg text-lg tracking-wider font-medium"
+              className="px-3 py-3 mt-3 mb-1 w-full border-none focus:outline-none focus:bg-[#393E46]/100 bg-[#393E46]/80 text-white rounded-lg text-base md:text-lg tracking-wider font-medium"
               onChange={() => handleInputChange('email')}
             />
           </div>
@@ -181,7 +184,7 @@ const Login = () => {
               ref={passwordRef}
               type={passwordToggle ? 'text' : 'password'}
               placeholder="Password"
-              className="px-3 py-3 mt-3 mb-1 w-[100%] border-none focus:outline-none focus:bg-[#393E46]/100 bg-[#393E46]/80 text-white rounded-lg text-lg tracking-wider font-medium"
+              className="px-3 py-3 mt-3 mb-1 w-full border-none focus:outline-none focus:bg-[#393E46]/100 bg-[#393E46]/80 text-white rounded-lg text-base md:text-lg tracking-wider font-medium"
               onChange={() => handleInputChange('password')}
             />
             <img src={passwordToggle ? password_open : password_closed} onClick={() => setPasswordToggle(!passwordToggle)} alt="password_open" className='absolute mt-1 right-3.5 top-1/2 -translate-y-1/2 w-5 h-5 cursor-pointer' />
@@ -191,12 +194,12 @@ const Login = () => {
 
         {loginError && <p className='text-red-400 text-sm px-1 min-h-5'>{loginError}</p>}
 
-        <button className="px-2 py-2.5 my-3 mt-5 w-[93%] text-white text-lg font-medium bg-red-600 hover:bg-red-700 transition-all duration-300 rounded-md cursor-pointer"
+        <button className="px-2 py-2.5 my-3 mt-5 w-full text-white text-base md:text-lg font-medium bg-red-600 hover:bg-red-700 transition-all duration-300 rounded-md cursor-pointer"
           onClick={handleButtonClick}>
           {isSignin ? 'Sign In' : 'Sign Up'}
         </button>
 
-        <p className='py-2 text-left text-md text-gray-300 w-[93%]'>{isSignin ? 'New to Netflix?' : 'Already a User!'}
+        <p className='py-3.5 sm:py-2 text-center sm:text-left text-sm md:text-md text-gray-300 w-full'>{isSignin ? 'New to Netflix?' : 'Already a User!'}
           <span onClick={toggleSignInForm} className='cursor-pointer text-white text-md hover:text-red-400 transition-all duration-300 underline ps-1.5'>{!isSignin ? 'Sign In.' : 'Sign Up Now.'}</span>
         </p>
       </form>

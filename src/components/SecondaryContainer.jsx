@@ -8,7 +8,7 @@ const SecondaryContainer = () => {
 
    return (
       <div className="py-8 w-[95%] mx-auto">
-         <div className="relative -mt-44 w-[97%] mx-auto z-10">
+         <div className="relative -mt-0 sm:-mt-28 lg:-mt-44 w-[97%] mx-auto z-10">
             <MovieCarouselList
                title="Now Playing"
                moviesData={nowPlayingMovies}

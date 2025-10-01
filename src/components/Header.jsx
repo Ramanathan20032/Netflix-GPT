@@ -45,13 +45,13 @@ const Header = () => {
   }, [])
 
   return (
-    <div className='fixed w-full bg-gradient-to-b from-black/100 px-10 py-3 flex justify-between items-center z-50'>
+    <div className='fixed w-full bg-gradient-to-b from-black/100 px-4 sm:px-6 md:px-8 lg:px-10 py-5 sm:py-4 flex justify-between items-center z-50'>
       <Link to="/browse">
-        <img src={netflix_logo} className='w-44 cursor-pointer' alt='logo'/>
+        <img src={netflix_logo} className='w-28 sm:w-36 md:w-44 cursor-pointer' alt='logo' />
       </Link>
 
       {user && (
-        <div className='flex items-center gap-x-3'>
+        <div className='flex items-center gap-x-2 sm:gap-x-3'>
           {/* Avatar with Dropdown */}
           <div
             className='relative group'
@@ -68,7 +68,7 @@ const Header = () => {
           >
             <img
               src={netflix_avatar}
-              className='w-9.5 rounded-md cursor-pointer transition-all duration-300 hover:ring-1 hover:ring-[#FAF9EE] hover:ring-opacity-100'
+              className='w-8 sm:w-9 md:w-9.5 rounded-md cursor-pointer transition-all duration-300 hover:ring-1 hover:ring-[#FAF9EE] hover:ring-opacity-100'
               alt='avatar'
             />
 
@@ -121,7 +121,8 @@ const Header = () => {
 
           <button
             onClick={handleSignOut}
-            className='text-white text-md font-semibold border border-white rounded-md px-4 py-1.5 hover:bg-white hover:text-black transition-all duration-300 cursor-pointer'
+            // className='text-white text-md font-semibold border border-white rounded-md px-4 py-1.5 hover:bg-white hover:text-black transition-all duration-300 cursor-pointer'
+            className='text-white text-sm md:text-md font-semibold border border-white rounded-md px-3 sm:px-4 py-1 sm:py-2 hover:bg-white hover:text-black transition-all duration-300 cursor-pointer'
           >
             Sign Out
           </button>
