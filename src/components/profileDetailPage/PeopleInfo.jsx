@@ -54,7 +54,7 @@ const PeopleInfo = () => {
                             {details.biography && (
                                 <div className="mb-8">
                                     <h2 className="text-2xl sm:text-3xl font-bold mb-4">Biography</h2>
-                                    <p className="text-gray-300 leading-relaxed text-md md:text-lg">
+                                    <p className="text-justify text-gray-300 leading-relaxed text-md md:text-lg">
                                         {details.biography}
                                     </p>
                                 </div>

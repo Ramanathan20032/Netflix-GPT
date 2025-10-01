@@ -86,7 +86,8 @@ const CastCrewList = () => {
                     // Show custom error for invalid ID instead of generic Error component
                     <InvalidIdError mediaType={mediaType} movieId={movieId} />
                 ) : people && people.length > 0 ? (
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-4 md:gap-5">
+                    // <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-4 md:gap-5">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4 md:gap-5">
                         {people.map((person, index) => {
                             // Create unique key for cast/crew members
                             const uniqueKey = `${person.id}-${index}-${person.credit_id || person.character || person.job || ''}`;

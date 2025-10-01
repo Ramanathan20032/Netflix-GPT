@@ -66,12 +66,12 @@ const MovieInfoBannerPage = ({ mediaType }) => {
                         {/* Title and Tagline */}
                         <div>
                             {getTitle() && (
-                                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+                                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 sm:mb-4">
                                     {getTitle()}
                                 </h1>
                             )}
                             {details?.tagline && (
-                                <p className="text-xl md:text-xl text-gray-300 mb-5 italic">
+                                <p className="text-lg sm:text-xl text-gray-300 sm:mb-5 mb-3 italic">
                                     "{details?.tagline}"
                                 </p>
                             )}
@@ -148,7 +148,7 @@ const MovieInfoBannerPage = ({ mediaType }) => {
 
                         {/* Overview */}
                         {details?.overview && (
-                            <p className="text-gray-300 text-lg max-w-3xl leading-relaxed line-clamp-2">
+                            <p className="text-gray-300 sm:text-lg text-base max-w-3xl leading-relaxed line-clamp-3 sm:line-clamp-2">   
                                 {details?.overview}
                             </p>
                         )}

@@ -24,7 +24,7 @@ const MovieCarouselList = ({ title, moviesData, isLoading = false, type, movieId
                 type === "infoDetailCast" || type === "infoDetailCrew" ? (
                     // For infoDetail, show title without arrow and no click
                     <div className="text-white px-1 mb-4">
-                        <h1 className="text-2xl font-bold">{title}</h1>
+                        <h1 className="text-lg sm:text-2xl font-bold">{title}</h1>
                     </div>
                 ) : (
                     // For other types, show title with arrow and click functionality
@@ -32,7 +32,7 @@ const MovieCarouselList = ({ title, moviesData, isLoading = false, type, movieId
                         className="text-white hover:text-gray-400 flex items-center gap-2 px-1 mb-4 cursor-pointer w-fit group"
                         onClick={handleNavigate}
                     >
-                        <h1 className="text-2xl font-bold">{title}</h1>
+                        <h1 className="text-lg sm:text-2xl font-bold">{title}</h1>
                         <svg
                             className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-2"
                             fill="currentColor"

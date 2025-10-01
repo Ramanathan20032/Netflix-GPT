@@ -18,7 +18,7 @@ const GenreListing = ({ title, mediaType, type }) => {
         <div>
             <div
                 className="text-white hover:text-gray-400 flex items-center gap-2 px-1 mb-0 cursor-pointer w-fit group">
-                <h1 className="text-2xl font-bold px-1">{title}</h1>
+                <h1 className="text-lg sm:text-2xl font-bold px-1">{title}</h1>
             </div>
             {/* ! to show the link on hover  */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 py-6 px-1 rounded-lg bg-black bg-opacity-0 text-white">
@@ -30,7 +30,7 @@ const GenreListing = ({ title, mediaType, type }) => {
                         >
                             <img src={pattern} alt="genere" className="absolute top-0 left-0 w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-black/80 group-hover:bg-black/70 transition-all duration-300"></div>
-                            <p className="text-white text-center text-sm md:text-md uppercase group-hover:text-white-400 transition-all duration-300 z-10 relative tracking-wider px-1">{genere.name}</p>
+                            <p className="text-white text-center text-xs sm:text-sm md:text-md uppercase group-hover:text-white-400 transition-all duration-300 z-10 relative tracking-wider px-1">{genere.name}</p>
                         </Link>
                     )
                 })}

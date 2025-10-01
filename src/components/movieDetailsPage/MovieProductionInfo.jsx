@@ -11,7 +11,7 @@ const MovieProductionInfo = ({ title, mediaType }) => {
         <>
             {details?.production_companies && details?.production_companies?.filter((company) => company?.logo_path)?.length > 0 && (
                 <div className="mb-11">
-                    <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
+                    <h2 className="text-lg sm:text-2xl font-bold text-white mb-4">{title}</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4 p-4 py-6 rounded-lg bg-gray-800 bg-opacity-70 text-white">
                         {details?.production_companies
                             ?.filter((company) => company?.logo_path)

@@ -54,7 +54,7 @@ const MovieInfoSeasonsAndEpisodes = ({ title, mediaType }) => {
 
     return (
         <>
-            <h2 className="text-xl sm:text-2xl font-bold mb-4">{title}</h2>
+            <h2 className="text-lg sm:text-2xl font-bold mb-4">{title}</h2>
 
             {/* Seasons Navigation */}
             <div className="flex overflow-x-scroll scrollbar-hide gap-0 mb-6">

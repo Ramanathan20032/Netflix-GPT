@@ -10,7 +10,7 @@ const MovieInfoLanguage = ({ title, mediaType }) => {
         <>
             {details?.spoken_languages && details?.spoken_languages?.length > 0 && (
                 <div className="mb-11">
-                    <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
+                    <h2 className="text-lg sm:text-2xl font-bold text-white mb-4">{title}</h2>
                     <div className="flex flex-wrap gap-2">
                         {details?.spoken_languages?.map((language, index) => (
                             <span
