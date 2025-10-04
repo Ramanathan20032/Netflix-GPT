@@ -40,7 +40,6 @@ const Browse = () => {
     if (isGenereListLoaded) {
       return;
     }
-    // dispatch(multiSearchThunk({ query: "Avengers" }));
     dispatch(genereListThunk({ mediaType: 'movie' }));
     dispatch(genereListThunk({ mediaType: 'tv' }));
   }, [dispatch]);

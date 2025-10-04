@@ -7,13 +7,27 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../store/slices/userSlice';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useMatch } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const [showDropdown, setShowDropdown] = useState(false);
+
+  // ! use if u have hardcoded urls
+  // const location = useLocation();
+  // const hideSearch = location.pathname.includes('/people/') || location.pathname.includes('/suggestions');
+
+  // ! if u have dynamic urls then use [useMatch]
+  const hideSearchRoutes = [
+    "/:mediaType/:movieId",
+    "/people/:personId",
+    "/:mediaType/:movieId/people/:type",
+    "/:mediaType/:movieId/suggestions/:type"
+  ]
+  const matchesUrls = hideSearchRoutes.map((pattern) => useMatch(pattern));
+  const hideSearch = matchesUrls.some(Boolean);
 
   const handleSignOut = () => {
     signOut(auth).then(() => {
@@ -52,6 +66,53 @@ const Header = () => {
 
       {user && (
         <div className='flex items-center gap-x-2 sm:gap-x-3'>
+
+          {/* input serach component */}
+          {!hideSearch &&
+            <div className='flex items-center relative mr-1.5 mr-1 sm:mr-2 cursor-pointer'>
+              {/* Mobile: Icon only with circular border */}
+              <div className='flex sm:hidden items-center justify-center w-9 h-9 rounded-[18px] border border-white/50 hover:border-white transition-all duration-300'>
+                <svg
+                  className='w-5 h-5 text-white'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
+                    d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+                  ></path>
+                </svg>
+              </div>
+
+              {/* Desktop: Full search bar from sm onwards */}
+              <div className='hidden sm:flex items-center relative'>
+                <svg
+                  className='w-5 h-5 text-white absolute left-3'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
+                    d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+                  ></path>
+                </svg>
+                <input
+                  type='text'
+                  placeholder='movie, tv, people...'
+                  className='bg-black bg-opacity-70 text-white placeholder-gray-400 border border-white/50 rounded py-1 sm:py-1.5 pl-10 pr-4 focus:outline-none focus:border-white w-50 md:w-60 lg:w-75 transition-all duration-300'
+                />
+              </div>
+            </div>
+          }
+
           {/* Avatar with Dropdown */}
           <div
             className='relative group'
@@ -95,25 +156,6 @@ const Header = () => {
                     </div>
                   </div>
 
-                  {/* Menu Items */}
-                  {/* <div className='pt-2 space-y-1'>
-                    <button className='w-full text-left text-white hover:bg-gray-700 hover:bg-opacity-50 px-2 py-2 rounded text-sm transition-colors duration-200'>
-                      Manage Profiles
-                    </button>
-                    <button className='w-full text-left text-white hover:bg-gray-700 hover:bg-opacity-50 px-2 py-2 rounded text-sm transition-colors duration-200'>
-                      Account
-                    </button>
-                    <button className='w-full text-left text-white hover:bg-gray-700 hover:bg-opacity-50 px-2 py-2 rounded text-sm transition-colors duration-200'>
-                      Help Center
-                    </button>
-                    <hr className='border-gray-600 my-2' />
-                    <button
-                      onClick={handleSignOut}
-                      className='w-full text-left text-white hover:bg-gray-700 hover:bg-opacity-50 px-2 py-2 rounded text-sm transition-colors duration-200'
-                    >
-                      Sign out of Netflix
-                    </button>
-                  </div> */}
                 </div>
               </div>
             )}
@@ -121,8 +163,7 @@ const Header = () => {
 
           <button
             onClick={handleSignOut}
-            // className='text-white text-md font-semibold border border-white rounded-md px-4 py-1.5 hover:bg-white hover:text-black transition-all duration-300 cursor-pointer'
-            className='text-white text-sm md:text-md font-semibold border border-white rounded-md px-3 sm:px-4 py-1 sm:py-2 hover:bg-white hover:text-black transition-all duration-300 cursor-pointer'
+            className='text-sm md:text-md font-bold border border-white bg-white/90 text-black hover:bg-transparent hover:text-white rounded-md px-3 sm:px-4 py-1.5 sm:py-2 transition-all duration-300 cursor-pointer tracking-wider'
           >
             Sign Out
           </button>
