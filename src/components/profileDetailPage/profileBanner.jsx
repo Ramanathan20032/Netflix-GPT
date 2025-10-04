@@ -21,7 +21,7 @@ const ProfileBanner = () => {
             )}
 
             {/* Content */}
-            <div className="relative z-10 px-7 sm:px-8 md:px-12 py-8">
+            <div className="relative z-10 px-7 sm:px-8 md:px-12 py-8 pt-30 md:pt-40">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col lg:flex-row lg:items-center gap-8">
                         {/* Profile Image */}

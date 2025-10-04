@@ -7,7 +7,7 @@ const PaginationedMediaListing = ({ mediaType, genereId, genreName, endPoint, ty
     // console.log("MediaPaginationListing");
     return (
         <div className="min-h-screen bg-black">
-            <div className="w-full mx-auto px-7 sm:px-8 md:px-12 py-8">
+            <div className="w-full mx-auto px-7 sm:px-8 md:px-12 py-8 pt-26 md:pt-30">
                 {/* Only show header when NOT in error state */}
                 {!error &&
                     (genereId ? (

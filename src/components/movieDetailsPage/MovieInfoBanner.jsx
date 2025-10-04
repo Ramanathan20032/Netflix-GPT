@@ -71,7 +71,7 @@ const MovieInfoBannerPage = ({ mediaType }) => {
                                 </h1>
                             )}
                             {details?.tagline && (
-                                <p className="text-lg sm:text-xl text-gray-300 sm:mb-5 mb-3 italic">
+                                <p className="text-sm sm:text-xl text-gray-300 sm:mb-5 mb-3 italic">
                                     "{details?.tagline}"
                                 </p>
                             )}

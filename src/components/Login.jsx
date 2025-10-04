@@ -138,7 +138,6 @@ const Login = () => {
 
   return (
     <div className="relative h-screen w-full">
-      <Header />
 
       {/* Banner Image */}
       <img

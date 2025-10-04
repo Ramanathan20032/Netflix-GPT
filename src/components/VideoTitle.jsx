@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 const VideoTitle = ({ spotLightMovie }) => {
 
     return (
-        <div className="absolute left-5 sm:left-8.5 md:left-9 lg:left-15 bottom-24 sm:bottom-1/4 md:bottom-28 lg:bottom-1/3 z-20 text-white max-w-xs sm:max-w-md md:max-w-lg">
+        <div className="absolute left-5 sm:left-8.5 md:left-9 lg:left-15 bottom-14 sm:bottom-1/4 md:bottom-28 lg:bottom-1/3 z-20 text-white max-w-sm sm:max-w-md md:max-w-lg">
 
             {/* Movie Title */}
-            <h1 className="text-2xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 drop-shadow-2xl">
+            <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 drop-shadow-2xl">
                 {spotLightMovie?.title}
             </h1>
 

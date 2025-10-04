@@ -59,7 +59,6 @@ const Browse = () => {
 
   return (
     <div className="relative w-full h-screen bg-black">
-      <Header />
       {isLoading ? (
         <div className='w-full h-screen flex items-center justify-center'>
           <LoadingSpinner />

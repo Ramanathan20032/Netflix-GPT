@@ -73,7 +73,7 @@ const CastCrewList = () => {
 
     return (
         <div className="min-h-screen bg-black">
-            <div className="w-full mx-auto px-7 sm:px-8 md:px-12 py-8">
+            <div className="w-full mx-auto px-7 sm:px-8 md:px-12 py-8 pt-24 md:pt-28">
                 <h1 className="text-gray-100 text-base md:text-xl font-bold mb-4 md:mb-6 mt-2 md:mt-4 tracking-wider">
                     {type?.toUpperCase()} - {mediaType?.toUpperCase()}
                 </h1>
