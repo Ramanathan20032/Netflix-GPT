@@ -15,6 +15,7 @@ import { genereListThunk } from '../store/thunks/genereListThunk'
 
 // ! constants
 import { IMAGE_BASE_URL } from '../utils/constants'
+import { multiSearchThunk } from '../store/thunks/multiSearchThunk'
 
 
 const Browse = () => {
@@ -39,6 +40,7 @@ const Browse = () => {
     if (isGenereListLoaded) {
       return;
     }
+    // dispatch(multiSearchThunk({ query: "Avengers" }));
     dispatch(genereListThunk({ mediaType: 'movie' }));
     dispatch(genereListThunk({ mediaType: 'tv' }));
   }, [dispatch]);

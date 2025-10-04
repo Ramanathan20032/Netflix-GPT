@@ -10,10 +10,12 @@ import genereCategoryListReducer from './slices/genereCategorySlice'
 import mediaCategorySlice from "./slices/mediaCategorySlice";
 import peopleDetailReducer from "./slices/peopleDetailSlice";
 import tvSeriesSeasonReducer from "./slices/tvSeriesSeasonSlice";
+import multiSearchReducer from "./slices/multiSearchSlice"
 
 const appStore = configureStore({
     reducer: {
         user: userReducer,
+        multiSearch: multiSearchReducer,
         movies: moviesReducer,
         tvList: tvListReducer,
         details: moviesDetailReducer,
