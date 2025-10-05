@@ -9,6 +9,21 @@ const multiSearchSlice = createSlice({
         searchResults: [],
         totalResults: 0
     },
+    // Add the reducer here
+    reducers: {
+        clearSearch: (state) => {
+            state.searchLoading = false;
+            state.searchError = null;
+            state.searchResults = [];
+            state.totalResults = 0;
+        },
+        // A better approach is to only clear results when a new search starts
+        clearResultsOnNewQuery: (state) => {
+            state.searchResults = [];
+            state.totalResults = 0;
+            // Optionally set loading true immediately, but pending handles this better
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(multiSearchThunk.pending, (state) => {
@@ -29,4 +44,5 @@ const multiSearchSlice = createSlice({
     }
 })
 
+export const { clearSearch, clearResultsOnNewQuery } = multiSearchSlice.actions;
 export default multiSearchSlice.reducer;

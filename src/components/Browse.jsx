@@ -14,8 +14,6 @@ import { tvListThunk } from '../store/thunks/tvListThunk'
 import { genereListThunk } from '../store/thunks/genereListThunk'
 
 // ! constants
-import { IMAGE_BASE_URL } from '../utils/constants'
-import { multiSearchThunk } from '../store/thunks/multiSearchThunk'
 
 
 const Browse = () => {
