@@ -87,7 +87,6 @@ const Header = () => {
             {/* input serach component */}
             {!hideSearch &&
               <div className='flex items-center relative mr-1.5 cursor-pointer'>
-                {/* Mobile: Icon only with circular border */}
                 <div className='flex items-center justify-center w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-[20px] border border-white/50 hover:border-white transition-all duration-300'
                   onClick={() => setIsSearchOpen(true)}>
                   <svg
@@ -105,30 +104,6 @@ const Header = () => {
                     ></path>
                   </svg>
                 </div>
-
-                {/* Desktop: Full search bar from sm onwards */}
-                {/* <div className='hidden sm:flex items-center relative'
-                  onClick={() => setIsSearchOpen(true)}>
-                  <svg
-                    className='w-5 h-5 text-white absolute left-3'
-                    fill='none'
-                    stroke='currentColor'
-                    viewBox='0 0 24 24'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      strokeWidth='2'
-                      d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-                    ></path>
-                  </svg>
-                  <input
-                    type='text'
-                    placeholder='Search...'
-                    className='bg-black bg-opacity-70 text-white placeholder-gray-400 border border-white/50 rounded py-1 sm:py-1.5 pl-10 pr-4 focus:outline-none focus:border-white w-50 md:w-60 lg:w-75 transition-all duration-300'
-                  />
-                </div> */}
               </div>
             }
 
