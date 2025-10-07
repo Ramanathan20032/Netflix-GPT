@@ -1,9 +1,25 @@
-const MovieInfoCtaButtons = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { MovieTrailerThunk } from "../../store/thunks/movieTrailerThunk";
+
+const MovieInfoCtaButtons = ({ mediaType }) => {
+    const dispatch = useDispatch()
+    const { movieDetails } = useSelector((store) => store?.details);
+    const { tvDetails } = useSelector((store) => store?.tvDetail);
+    const details = mediaType === 'movie' ? movieDetails : tvDetails;
+    console.log(details?.id)
+
+    const playTrailer = () => {
+        if (!details?.id) return null;
+        // console.log("Dispatching trailer thunk with:", { mediaType, movieId: details?.id });
+        dispatch(MovieTrailerThunk({ mediaType, movieId: details?.id }));
+    }
+
     return (
         <>
             <div className="flex flex-wrap gap-4 mb-11">
                 {/* Play Trailer Button */}
-                <button className="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors cursor-pointer transition-all duration-200 flex items-center gap-1.5 group">
+                <button className="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors cursor-pointer transition-all duration-200 flex items-center gap-1.5 group"
+                    onClick={playTrailer}>
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                     </svg>

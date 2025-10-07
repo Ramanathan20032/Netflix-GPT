@@ -11,6 +11,7 @@ import mediaCategorySlice from "./slices/mediaCategorySlice";
 import peopleDetailReducer from "./slices/peopleDetailSlice";
 import tvSeriesSeasonReducer from "./slices/tvSeriesSeasonSlice";
 import multiSearchReducer from "./slices/multiSearchSlice"
+import movieTrailerReducer from "./slices/movieTrailerSlice"
 
 const appStore = configureStore({
     reducer: {
@@ -26,6 +27,7 @@ const appStore = configureStore({
         mediaCategory: mediaCategorySlice,
         PeopleDetail: peopleDetailReducer,
         tvSeriesSeason: tvSeriesSeasonReducer,
+        movieTrailer: movieTrailerReducer
     }
 })
 

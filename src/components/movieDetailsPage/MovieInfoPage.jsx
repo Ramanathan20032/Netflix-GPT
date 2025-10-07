@@ -68,7 +68,7 @@ const MovieInfoPage = ({ mediaType }) => {
                 <MovieInfoDetail title="Movie Details" mediaType={mediaType} />
 
                 {/* CTA Buttons */}
-                <MovieInfoCtaButtons />
+                <MovieInfoCtaButtons mediaType={mediaType} />
 
                 {/* Overview Section */}
                 <MovieInfoOverView title="Synopsis" mediaType={mediaType} />
