@@ -6,11 +6,9 @@ const MovieInfoCtaButtons = ({ mediaType }) => {
     const { movieDetails } = useSelector((store) => store?.details);
     const { tvDetails } = useSelector((store) => store?.tvDetail);
     const details = mediaType === 'movie' ? movieDetails : tvDetails;
-    console.log(details?.id)
 
     const playTrailer = () => {
         if (!details?.id) return null;
-        // console.log("Dispatching trailer thunk with:", { mediaType, movieId: details?.id });
         dispatch(MovieTrailerThunk({ mediaType, movieId: details?.id }));
     }
 

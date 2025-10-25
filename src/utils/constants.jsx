@@ -45,3 +45,11 @@ export const getGenreName = (genreId, genreList) => {
   const genre = genreList.find(g => g.id === parseInt(genreId));
   return genre ? genre.name : 'Unknown Genre';
 };
+
+// ? To find the Media Type
+export const findMediaType = (detail) => {
+  if (!detail) return 'unknown';
+  if ('first_air_date' in detail || 'original_name' in detail) return 'tv';
+  else if ('release_date' in detail || 'original_title' in detail) return 'movie';
+  else return 'unknown';
+};

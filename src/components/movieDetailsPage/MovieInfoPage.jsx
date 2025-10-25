@@ -10,6 +10,7 @@ import MovieProductionInfo from "./MovieProductionInfo";
 import MovieInfoLanguage from "./MovieInfoLanguage";
 import MovieInfoReviews from "./MovieInfoReviews";
 import MovieInfoSeasonsAndEpisodes from "./MovieInfoSeasonsAndEpisodes";
+import TrailerModal from "../TrailerModal";
 
 
 const MovieInfoPage = ({ mediaType }) => {
@@ -31,6 +32,9 @@ const MovieInfoPage = ({ mediaType }) => {
         tvVideos,
         tvLoading,
     } = useSelector((store) => store?.tvDetail);
+
+    // Trailer Active State
+    const { isOpen } = useSelector((store) => store.movieTrailer);
 
     // Check if required data is available based on media type
     const isDataReady = () => {
@@ -60,6 +64,9 @@ const MovieInfoPage = ({ mediaType }) => {
     return (
         <div className="min-h-screen bg-black">
             <MovieInfoBanner mediaType={mediaType} />
+
+            {/* ✅ Trailer Modal — always mounted, only visible when isOpen = true */}
+            {isOpen && <TrailerModal />}
 
             {/* Content Sections */}
             <div className="w-full mx-auto px-7 sm:px-8 md:px-12 py-8">
