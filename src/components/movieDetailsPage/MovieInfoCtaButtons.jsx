@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { MovieTrailerThunk } from "../../store/thunks/movieTrailerThunk";
+import { addFavoriteItem } from "../../store/slices/favoriteSlice";
 
 const MovieInfoCtaButtons = ({ mediaType }) => {
     const dispatch = useDispatch()
@@ -10,6 +11,11 @@ const MovieInfoCtaButtons = ({ mediaType }) => {
     const playTrailer = () => {
         if (!details?.id) return null;
         dispatch(MovieTrailerThunk({ mediaType, movieId: details?.id }));
+    }
+
+    const addToFavorite = () => {
+        if (!details) return null;
+        dispatch(addFavoriteItem(details))
     }
 
     return (
@@ -24,7 +30,8 @@ const MovieInfoCtaButtons = ({ mediaType }) => {
                     <span>Play Trailer</span>
                 </button>
                 {/* Add to List Button */}
-                <button className="bg-gray-800 bg-opacity-70 hover:bg-gray-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors cursor-pointer transition-all duration-200 flex items-center gap-1.5 group">
+                <button className="bg-gray-800 bg-opacity-70 hover:bg-gray-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors cursor-pointer transition-all duration-200 flex items-center gap-1.5 group"
+                    onClick={addToFavorite}>
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M6 2a2 2 0 00-2 2v18l8-4 8 4V4a2 2 0 00-2-2H6zm6 8V7a1 1 0 10-2 0v3H7a1 1 0 100 2h3v3a1 1 0 102 0v-3h3a1 1 0 100-2h-3z" />
                     </svg>

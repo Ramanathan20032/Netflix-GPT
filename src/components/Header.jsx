@@ -4,18 +4,19 @@ import netflix_avatar from '../assets/images/netflix-profile.jpg'
 import { signOut } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, Link, useMatch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../store/slices/userSlice';
-import { Link, useLocation, useMatch } from 'react-router-dom';
 import SearchOverlay from './SearchPage/SearchOverlay';
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const [showDropdown, setShowDropdown] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const favoritesCount = useSelector(store => store.favorites.favoritesItems.length);
 
   const handleSignOut = () => {
     signOut(auth).then(() => {
@@ -45,19 +46,20 @@ const Header = () => {
         // User is signed in
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }))
-        // ? console.log("User is signed in", user)
-        navigate("/browse")
+        // Only redirect if on login/home
+        if (location.pathname === "/") {
+          navigate("/browse");
+        }
       } else {
         // User is signed out
         dispatch(removeUser())
-        // ? console.log("User is signed out", user)
         navigate("/")
       }
     });
 
     return () => unsubscribed();
 
-  }, [])
+  }, [dispatch, location, navigate]);
 
   // ! use if u have hardcoded urls
   // const location = useLocation();
@@ -76,7 +78,7 @@ const Header = () => {
 
   return (
     <>
-      <div className='fixed w-full bg-gradient-to-b from-black/100 px-4 sm:px-6 md:px-8 lg:px-10 py-5 sm:py-4 flex justify-between items-center z-50'>
+      <div className='fixed w-full bg-gradient-to-b from-black/100 pl-1 px-3 sm:px-6 md:px-8 lg:px-10 py-5 sm:py-4 flex justify-between items-center z-50'>
         <Link to="/browse">
           <img src={netflix_logo} className='w-28 sm:w-36 md:w-44 cursor-pointer' alt='logo' />
         </Link>
@@ -84,9 +86,8 @@ const Header = () => {
         {user && (
           <div className='flex items-center gap-x-2 sm:gap-x-3'>
 
-            {/* input serach component */}
             {!hideSearch &&
-              <div className='flex items-center relative mr-1.5 cursor-pointer'>
+              <div className='flex items-center relative cursor-pointer'>
                 <div className='flex items-center justify-center w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-[20px] border border-white/50 hover:border-white transition-all duration-300'
                   onClick={() => setIsSearchOpen(true)}>
                   <svg
@@ -106,6 +107,32 @@ const Header = () => {
                 </div>
               </div>
             }
+
+            {/* Favorites/Bucket icon with badge */}
+            <div className='relative flex items-center justify-center mr-1.5 cursor-pointer'
+              onClick={() => navigate('/favorites')}>
+              <div className='flex items-center justify-center w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-full border border-white/50 hover:border-white transition-all duration-300 bg-black/40'>
+                {/* Heroicons Outline - ShoppingBag (bucket) */}
+                <svg
+                  className='w-5 h-5 text-red-400'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                  xmlns='http://www.w3.org/2000/svg'>
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2.2}
+                    d='M5.5 7l1.5 12a2 2 0 002 1.5h6a2 2 0 002-1.5l1.5-12H5.5zm10.5 0a3.5 3.5 0 01-7 0' />
+                </svg>
+                {/* Badge - top right */}
+                {favoritesCount > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-xs font-medium rounded-full px-1.5 py-0.5 shadow">
+                    {favoritesCount}
+                  </span>
+                )}
+              </div>
+            </div>
 
             {/* Avatar with Dropdown */}
             <div
@@ -167,7 +194,7 @@ const Header = () => {
 
       {/* Search Panel Overlay */}
       {isSearchOpen && (
-        <SearchOverlay setIsSearchOpen={setIsSearchOpen}/>
+        <SearchOverlay setIsSearchOpen={setIsSearchOpen} />
       )}
     </>
   )

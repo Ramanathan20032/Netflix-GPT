@@ -27,7 +27,7 @@ const MovieCarouselCard = ({ movie, mediaType }) => {
 
     return (
         <Link to={isPerson ? `/people/${movie?.id}` : `/${routeMediaType}/${movie?.id}`}
-            className="relative rounded-md overflow-hidden transition-all duration-300 hover:scale-105 hover:z-10 cursor-pointer group bg-gray-800 w-full h-full block"
+            className="relative rounded-md overflow-hidden transition-all duration-300 hover:scale-103 hover:z-10 cursor-pointer group bg-gray-800 w-full h-full block"
         >
             {imageUrl ? (
                 <img

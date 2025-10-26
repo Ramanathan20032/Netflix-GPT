@@ -10,8 +10,9 @@ import genereCategoryListReducer from './slices/genereCategorySlice'
 import mediaCategorySlice from "./slices/mediaCategorySlice";
 import peopleDetailReducer from "./slices/peopleDetailSlice";
 import tvSeriesSeasonReducer from "./slices/tvSeriesSeasonSlice";
-import multiSearchReducer from "./slices/multiSearchSlice"
-import movieTrailerReducer from "./slices/movieTrailerSlice"
+import multiSearchReducer from "./slices/multiSearchSlice";
+import movieTrailerReducer from "./slices/movieTrailerSlice";
+import favoriteSliceReducer from "./slices/favoriteSlice";
 
 const appStore = configureStore({
     reducer: {
@@ -27,7 +28,8 @@ const appStore = configureStore({
         mediaCategory: mediaCategorySlice,
         PeopleDetail: peopleDetailReducer,
         tvSeriesSeason: tvSeriesSeasonReducer,
-        movieTrailer: movieTrailerReducer
+        movieTrailer: movieTrailerReducer,
+        favorites: favoriteSliceReducer
     }
 })
 
