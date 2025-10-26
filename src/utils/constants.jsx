@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/'
 
 // ? TMDB API Base URL (from environment variables)
@@ -7,9 +9,24 @@ export const TMDB_V3_API_KEY = import.meta.env.VITE_TMDB_V3_API_KEY;
 // ? TMDB_ACCESS_TOKEN (from environment variables)
 export const TMDB_ACCESS_TOKEN = import.meta.env.VITE_TMDB_ACCESS_TOKEN;
 
+// ? Create axios instance with default config
+export const tmdbApi = axios.create({
+  baseURL: TMDB_BASE_URL,
+  timeout: 10000, // 10 seconds timeout
+  headers: {
+    'accept': 'application/json',
+    'Authorization': `Bearer ${TMDB_ACCESS_TOKEN}`,
+    'Content-Type': 'application/json'
+  }
+});
 
-// export const MOVIES_LISTING_API = 'https://api.themoviedb.org/3/movie/now_playing?page=1';
+// ? Usage Examples:
+// ? GET Request:  const response = await tmdbApi.get('/endpoint?param=value');
+// ? POST Request: const response = await tmdbApi.post('/endpoint', { data: 'value' });
+// ? PUT Request:  const response = await tmdbApi.put('/endpoint', { data: 'value' });
+// ? DELETE Request: const response = await tmdbApi.delete('/endpoint');
 
+// ? Legacy fetch options (kept for backward compatibility)
 export const MOVIES_LISTING_API_OPTIONS = {
   method: 'GET',
   headers: {
