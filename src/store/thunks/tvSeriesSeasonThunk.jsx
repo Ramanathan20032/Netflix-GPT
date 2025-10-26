@@ -11,7 +11,7 @@ export const tvSeriesSeasonThunk = createAsyncThunk(
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            console.log("TV SERIES SEASON DATA SUCCESSFULLY FETCHED");
+            // console.log("TV SERIES SEASON DATA SUCCESSFULLY FETCHED");
             return data;
         }
         catch (error) {

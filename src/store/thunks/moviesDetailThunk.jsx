@@ -57,7 +57,7 @@ export const moviesDetailThunk = createAsyncThunk(
                 videos,
             };
 
-            console.log("ALL MOVIE DATA SUCCESSFULLY FETCHED");
+            // console.log("ALL MOVIE DATA SUCCESSFULLY FETCHED");
             return movieData;
         }
         catch (error) {

@@ -24,7 +24,7 @@ export const moviesListThunk = createAsyncThunk(
             }
 
             const data = await response.json();
-            console.log("INDIAN MOVIES LISTING DATA SUCCESSFULLY FETCHED");
+            // console.log("INDIAN MOVIES LISTING DATA SUCCESSFULLY FETCHED");
             return { category: categoryMapping[category], moviesList: data.results };
         } catch (error) {
             return rejectWithValue(error.message);

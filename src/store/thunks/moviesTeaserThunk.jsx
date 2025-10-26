@@ -13,7 +13,7 @@ export const movieTeaserThunk = createAsyncThunk(
             }
 
             const data = await response.json();
-            console.log("MOVIE TEASER DATA SUCCESSFULLY FETCHED");
+            // console.log("MOVIE TEASER DATA SUCCESSFULLY FETCHED");
             return data.results;
         }
         catch (error) {

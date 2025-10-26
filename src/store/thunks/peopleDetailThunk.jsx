@@ -43,7 +43,7 @@ export const peopleDetailThunk = createAsyncThunk(
                 combineCredits,
             };
 
-            console.log("PEOPLE DATA SUCCESSFULLY FETCHED");
+            // console.log("PEOPLE DATA SUCCESSFULLY FETCHED");
             return peopleData;
         }
         catch (error) {

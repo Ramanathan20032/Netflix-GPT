@@ -11,7 +11,7 @@ export const multiSearchThunk = createAsyncThunk(
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             const data = await response.json();
-            console.log(`SEARCH API DATA SUCCESSFULLY FETCHED`, data);
+            // console.log(`SEARCH API DATA SUCCESSFULLY FETCHED`, data);
             return data;
         }
         catch (error) {

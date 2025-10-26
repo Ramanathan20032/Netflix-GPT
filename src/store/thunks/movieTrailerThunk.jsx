@@ -13,7 +13,7 @@ export const MovieTrailerThunk = createAsyncThunk(
             }
 
             const data = await response.json()
-            console.log("MOVIE TRAILER DATA SUCCESSFULLY FETCHED");
+            // console.log("MOVIE TRAILER DATA SUCCESSFULLY FETCHED");
             // console.log(data)
             return { movieId, trailer: data?.results }
         }

@@ -11,7 +11,7 @@ export const genereListThunk = createAsyncThunk(
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            console.log(`GENERE LIST DATA: ${mediaType} SUCCESSFULLY FETCHED`);
+            // console.log(`GENERE LIST DATA: ${mediaType} SUCCESSFULLY FETCHED`);
             return { mediaType, genereList: data };
         }
         catch (error) {

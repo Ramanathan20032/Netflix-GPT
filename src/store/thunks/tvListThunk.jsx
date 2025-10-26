@@ -20,7 +20,7 @@ export const tvListThunk = createAsyncThunk(
             }
 
             const data = await response.json();
-            console.log("TV LISTING DATA SUCCESSFULLY FETCHED");
+            // console.log("TV LISTING DATA SUCCESSFULLY FETCHED");
             return { category: categoryMapping[category], tvList: data.results };
         }
         catch (error) {
