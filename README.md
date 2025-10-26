@@ -1,5 +1,26 @@
 #### set-up
 
+## Environment Variables Setup
+
+Before running the project, you need to set up your environment variables:
+
+1. Copy the `.env.example` file to `.env.local`:
+   ```bash
+   cp .env.example .env.local
+   ```
+
+2. Open `.env.local` and add your TMDB API credentials:
+   ```
+   VITE_TMDB_V3_API_KEY=your_api_key_here
+   VITE_TMDB_ACCESS_TOKEN=your_access_token_here
+   ```
+
+3. Get your credentials from [TMDB](https://www.themoviedb.org/)
+
+**Note:** The `.env.local` file is already added to `.gitignore` and will not be committed to version control.
+
+
+
 - create the project using create-react-app.
 - Configured Tailwind for Styling.
 - Header Component

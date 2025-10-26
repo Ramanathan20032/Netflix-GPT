@@ -1,4 +1,4 @@
-import { MOVIES_LISTING_API_OPTIONS } from "../../utils/constants";
+import { MOVIES_LISTING_API_OPTIONS, TMDB_BASE_URL } from "../../utils/constants";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const categoryMapping = {
@@ -11,11 +11,11 @@ const categoryMapping = {
 export const tvListThunk = createAsyncThunk(
     'api/tvList',
     async (category, { rejectWithValue }) => {
-        try{
-            const TV_LISTING_API = `https://api.themoviedb.org/3/tv/${category}?language=en-US&page=1`;
+        try {
+            const TV_LISTING_API = `${TMDB_BASE_URL}/tv/${category}?language=en-US&page=1`;
             const response = await fetch(TV_LISTING_API, MOVIES_LISTING_API_OPTIONS);
 
-            if(!response.ok){
+            if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 

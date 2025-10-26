@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { MOVIES_LISTING_API_OPTIONS } from "../../utils/constants";
+import { MOVIES_LISTING_API_OPTIONS, TMDB_BASE_URL } from "../../utils/constants";
 
 // Helper function to fetch individual movie data
 const fetchTvData = async (endpoint, tvId) => {
     try {
-        const TV_DETAIL_API = `https://api.themoviedb.org/3/tv/${tvId}${endpoint}?language=en-US`;
+        const TV_DETAIL_API = `${TMDB_BASE_URL}/tv/${tvId}${endpoint}?language=en-US`;
         const response = await fetch(TV_DETAIL_API, MOVIES_LISTING_API_OPTIONS);
 
         if (!response.ok) {

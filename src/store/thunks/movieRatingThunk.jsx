@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getOrCreateGuestSession } from "../../utils/tmdbSession"; // make sure path is correct
-import { TMDB_ACCESS_TOKEN, TMDB_POST_API_OPTION } from "../../utils/constants";
+import { TMDB_ACCESS_TOKEN, TMDB_POST_API_OPTION, TMDB_BASE_URL } from "../../utils/constants";
 
 export const movieRatingThunk = createAsyncThunk(
   "api/movieRating",
@@ -9,10 +9,10 @@ export const movieRatingThunk = createAsyncThunk(
       const sessionId = await getOrCreateGuestSession(TMDB_ACCESS_TOKEN);
 
       const response = await fetch(
-        `https://api.themoviedb.org/3/${mediaType}/${movieId}/rating?guest_session_id=${sessionId}`,
+        `${TMDB_BASE_URL}/${mediaType}/${movieId}/rating?guest_session_id=${sessionId}`,
         {
-            // ? TMDB_POST_API_OPTION,
-            ...TMDB_POST_API_OPTION,
+          // ? TMDB_POST_API_OPTION,
+          ...TMDB_POST_API_OPTION,
           body: JSON.stringify({ value }), // value must be between 0.5 and 10.0
         }
       );
@@ -23,15 +23,15 @@ export const movieRatingThunk = createAsyncThunk(
         throw new Error(data.status_message || "Failed to rate movie");
       }
 
-    //   if (data.success) {
-    //     alert("Rated successfully!");
-    //   } else {
-    //     alert(data.status_message || "Failed to rate.");
-    //   }
-    //   console.log("Rating Value", value);
-    
+      //   if (data.success) {
+      //     alert("Rated successfully!");
+      //   } else {
+      //     alert(data.status_message || "Failed to rate.");
+      //   }
+      //   console.log("Rating Value", value);
+
       return { movieId, value, message: data.status_message };
-      
+
     } catch (error) {
       return rejectWithValue(error.message);
     }

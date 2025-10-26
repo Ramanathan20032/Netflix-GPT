@@ -1,4 +1,4 @@
-import { MOVIES_LISTING_API_OPTIONS } from '../../utils/constants';
+import { MOVIES_LISTING_API_OPTIONS, TMDB_BASE_URL } from '../../utils/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const categoryMapping = {
@@ -16,7 +16,7 @@ export const moviesListThunk = createAsyncThunk(
             // const MOVIES_LISTING_API = `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`;
 
             // ? API for Indian movies
-            const MOVIES_LISTING_API = `https://api.themoviedb.org/3/movie/${category}?language=en-US&region=IN&page=1&with_origin_country=IN&include_adult=false`;
+            const MOVIES_LISTING_API = `${TMDB_BASE_URL}/movie/${category}?language=en-US&region=IN&page=1&with_origin_country=IN&include_adult=false`;
             const response = await fetch(MOVIES_LISTING_API, MOVIES_LISTING_API_OPTIONS);
 
             if (!response.ok) {

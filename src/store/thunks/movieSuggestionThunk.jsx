@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { MOVIES_LISTING_API_OPTIONS } from "../../utils/constants";
+import { MOVIES_LISTING_API_OPTIONS, TMDB_BASE_URL } from "../../utils/constants";
 
 export const movieSuggestionThunk = createAsyncThunk(
     'api/movieSuggestion',
     async ({ mediaType, movieId, type, page = 1 }, { rejectWithValue }) => {
         try {
-            const MOVIE_SUGGESTION_API = `https://api.themoviedb.org/3/${mediaType}/${movieId}/${type}?language=en-US&page=${page}`;
+            const MOVIE_SUGGESTION_API = `${TMDB_BASE_URL}/${mediaType}/${movieId}/${type}?language=en-US&page=${page}`;
             const response = await fetch(MOVIE_SUGGESTION_API, MOVIES_LISTING_API_OPTIONS);
 
             if (!response.ok) {
