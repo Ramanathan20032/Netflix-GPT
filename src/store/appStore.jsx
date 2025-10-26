@@ -13,6 +13,7 @@ import tvSeriesSeasonReducer from "./slices/tvSeriesSeasonSlice";
 import multiSearchReducer from "./slices/multiSearchSlice";
 import movieTrailerReducer from "./slices/movieTrailerSlice";
 import favoriteSliceReducer from "./slices/favoriteSlice";
+import movieRatingReducer from './slices/movieRatingSlice';
 
 const appStore = configureStore({
     reducer: {
@@ -29,7 +30,8 @@ const appStore = configureStore({
         PeopleDetail: peopleDetailReducer,
         tvSeriesSeason: tvSeriesSeasonReducer,
         movieTrailer: movieTrailerReducer,
-        favorites: favoriteSliceReducer
+        favorites: favoriteSliceReducer,
+        Rating: movieRatingReducer
     }
 })
 
