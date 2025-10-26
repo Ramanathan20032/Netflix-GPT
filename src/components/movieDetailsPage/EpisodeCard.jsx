@@ -1,5 +1,5 @@
 import { IMAGE_BASE_URL } from "../../utils/constants";
-import noImage from "../../assets/images/no-image.png";
+import noImage from "../../assets/images/no-series.jpeg";
 
 const EpisodeCard = ({ episode, seasonNumber, isSpecial }) => {
     return (

@@ -1,5 +1,6 @@
 import { IMAGE_BASE_URL } from '../../utils/constants';
 import { useNavigate } from "react-router-dom";
+import noImage from '../../assets/images/no-series.jpeg';
 
 const SearchResultCard = ({ result, setIsSearchOpen }) => {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ const SearchResultCard = ({ result, setIsSearchOpen }) => {
         if (result.backdrop_path) return `${IMAGE_BASE_URL}w500${result.backdrop_path}`;
         else if (result.poster_path) return `${IMAGE_BASE_URL}w500${result.poster_path}`;
         else if (result.profile_path) return `${IMAGE_BASE_URL}w500${result.profile_path}`;
-        else return 'https://via.placeholder.com/500x281?text=No+Image';
+        else return noImage;
     };
 
     const handleNavigateDetail = (result) => {
@@ -52,7 +53,7 @@ const SearchResultCard = ({ result, setIsSearchOpen }) => {
                         alt={result.title || result.name}
                         className='w-full h-34 sm:h-36 object-cover'
                         onError={(e) => {
-                            e.target.src = 'https://via.placeholder.com/500x281?text=No+Image';
+                            e.target.src = noImage;
                         }}
                     />
 
